@@ -16,5 +16,7 @@
 ```
 4. Створити PR на Github та чекати апрува від ліда
 
-Frontend lead - Dmytro
-Backend lead - Mykyta
+Frontend lead - Mykyta
+
+Backend lead - Dmytro
+
