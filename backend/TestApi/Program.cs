@@ -34,6 +34,11 @@ namespace TestApi
                     options.LowercaseQueryStrings = true;
                 });
 
+                builder.Services.AddMediatR(cfg =>
+                {
+                    cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
+                });
+
                 // Controllers
                 builder.Services.AddControllers();
 
