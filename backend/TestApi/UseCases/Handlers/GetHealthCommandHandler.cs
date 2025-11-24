@@ -1,8 +1,9 @@
 ﻿using CSharpFunctionalExtensions;
 using MediatR;
 using TestApi.DTOs.Responses;
+using TestApi.UseCases.Commands;
 
-namespace TestApi.Commands.Handlers
+namespace TestApi.UseCases.Handlers
 {
     /// <summary>
     /// Handles the processing of a health check command and returns the current health status of the application.
