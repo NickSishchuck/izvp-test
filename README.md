@@ -20,3 +20,10 @@ Frontend lead - Mykyta
 
 Backend lead - Dmytro
 
+## Architecture Diagrams
+
+### API Sequence Deagram
+![API Sequence Diagram](docs/api_sequence.png)
+
+### Class Diagram
+![Class Diagram](docs/class_diagram.png)
