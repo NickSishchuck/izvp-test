@@ -1,7 +1,8 @@
 ﻿using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using TestApi.Commands;
+using TestApi.UseCases.Commands;
+using TestApi.UseCases.Handlers;
 
 namespace TestApi.Controllers
 {
