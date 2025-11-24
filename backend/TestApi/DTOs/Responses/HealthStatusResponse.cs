@@ -1,5 +1,8 @@
-﻿namespace TestApi.DTOs.Responses
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace TestApi.DTOs.Responses
 {
+    [ExcludeFromCodeCoverage]
     /// <summary>
     /// Represents the result of a health check operation, including the status and the time the check was performed.
     /// </summary>

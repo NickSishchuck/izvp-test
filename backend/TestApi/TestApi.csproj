@@ -18,6 +18,9 @@
 
 	<ItemGroup>
 	  <Folder Include="DTOs\Requests\" />
+	  <Folder Include="Implementations\" />
+	  <Folder Include="Interfaces\" />
+	  <Folder Include="UseCases\Queries\" />
 	</ItemGroup>
 
 </Project>
