@@ -7,6 +7,15 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Content Remove="Test_Json\test.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ApplicationDefinition Include="Test_Json\test.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="AutoMapper" Version="15.1.0" />
 		<PackageReference Include="CSharpFunctionalExtensions" Version="3.6.0" />
 		<PackageReference Include="FluentValidation" Version="12.1.0" />
 		<PackageReference Include="MediatR" Version="13.1.0" />
@@ -18,9 +27,6 @@
 
 	<ItemGroup>
 	  <Folder Include="DTOs\Requests\" />
-	  <Folder Include="Implementations\" />
-	  <Folder Include="Interfaces\" />
-	  <Folder Include="UseCases\Queries\" />
 	</ItemGroup>
 
 </Project>

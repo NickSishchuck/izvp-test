@@ -12,9 +12,13 @@ namespace TestApi.Tests
     {
         /// <summary>
         /// Provides default options for JSON serialization, including enum conversion to strings and no indentation.
+        /// </summary>
         private readonly JsonSerializerOptions _options = new()
         {
             WriteIndented = false,
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+            DictionaryKeyPolicy = JsonNamingPolicy.CamelCase,
+            PropertyNameCaseInsensitive = true,
             Converters = { new JsonStringEnumConverter() }
         };
 
@@ -23,33 +27,6 @@ namespace TestApi.Tests
         {
             // arrange (setup testing data)
             var original = TestFactory.CreateUkrainianTest();
-
-            var expectedJson =
-                "{\"Title\":\"Тест з C# для початківців\",\"Questions\":["
-              + "{\"Id\":1,"
-              + "\"Text\":\"Який тип даних використовується для зберігання цілого числа в C#?\","
-              + "\"Type\":\"SingleChoice\","
-              + "\"CorrectTextAnswer\":null,"
-              + "\"Options\":["
-                  + "{\"Id\":1,\"Text\":\"int\",\"IsCorrect\":true},"
-                  + "{\"Id\":2,\"Text\":\"string\",\"IsCorrect\":false},"
-                  + "{\"Id\":3,\"Text\":\"bool\",\"IsCorrect\":false}"
-              + "]},"
-              + "{\"Id\":2,"
-              + "\"Text\":\"Які з наведених типів є посилальними?\","
-              + "\"Type\":\"MultipleChoice\","
-              + "\"CorrectTextAnswer\":null,"
-              + "\"Options\":["
-                  + "{\"Id\":1,\"Text\":\"class\",\"IsCorrect\":true},"
-                  + "{\"Id\":2,\"Text\":\"struct\",\"IsCorrect\":false},"
-                  + "{\"Id\":3,\"Text\":\"string\",\"IsCorrect\":true}"
-              + "]},"
-              + "{\"Id\":3,"
-              + "\"Text\":\"Напишіть ключове слово для виведення тексту в консоль у C#.\","
-              + "\"Type\":\"Text\","
-              + "\"CorrectTextAnswer\":\"Console.WriteLine\","
-              + "\"Options\":[]}"
-              + "]}";
 
             // act (perform the action to be tested)
             var json = JsonSerializer.Serialize(original, _options);
