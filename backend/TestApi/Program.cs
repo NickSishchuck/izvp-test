@@ -1,6 +1,10 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.OpenApi.Models;
 using Serilog;
+using TestApi.Implementations;
+using TestApi.Interfaces;
+using TestApi.Mappers;
+using TestApi.Middleware;
 
 namespace TestApi
 {
@@ -12,6 +16,7 @@ namespace TestApi
             var сonfig = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}.json", optional: true, reloadOnChange: true)
                 .AddEnvironmentVariables()
                 .Build();
 
@@ -35,11 +40,19 @@ namespace TestApi
                     options.LowercaseUrls = true;
                     options.LowercaseQueryStrings = true;
                 });
-
+                
+                // Dependency Injection
                 builder.Services.AddMediatR(cfg =>
                 {
                     cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
                 });
+
+                builder.Services.AddAutoMapper(cfg =>
+                {
+                    cfg.AddMaps(typeof(Program).Assembly);
+                });
+
+                builder.Services.AddScoped<IJsonSerializer, JsonSerializer>();
 
                 // Controllers
                 builder.Services.AddControllers();
@@ -75,6 +88,9 @@ namespace TestApi
                 });
 
                 var app = builder.Build();
+
+                // Middleware for global exception handling
+                app.UseMiddleware<ExceptionHandlingMiddleware>();
 
                 // Middleware for logging HTTP requests
                 app.UseSerilogRequestLogging(options =>

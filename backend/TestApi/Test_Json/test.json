@@ -1,0 +1,58 @@
+{
+  "title": "Тест з C# для початківців",
+  "questions": [
+    {
+      "id": 1,
+      "text": "Який тип даних використовується для зберігання цілого числа в C#?",
+      "type": "SingleChoice",
+      "correctTextAnswer": null,
+      "options": [
+        {
+          "id": 1,
+          "text": "int",
+          "isCorrect": true
+        },
+        {
+          "id": 2,
+          "text": "string",
+          "isCorrect": false
+        },
+        {
+          "id": 3,
+          "text": "bool",
+          "isCorrect": false
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "text": "Які з наведених типів є посилальними?",
+      "type": "MultipleChoice",
+      "correctTextAnswer": null,
+      "options": [
+        {
+          "id": 1,
+          "text": "class",
+          "isCorrect": true
+        },
+        {
+          "id": 2,
+          "text": "struct",
+          "isCorrect": false
+        },
+        {
+          "id": 3,
+          "text": "string",
+          "isCorrect": true
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "text": "Напишіть ключове слово для виведення тексту в консоль у C#.",
+      "type": "Text",
+      "correctTextAnswer": "Console.WriteLine",
+      "options": []
+    }
+  ]
+}
