@@ -27,6 +27,7 @@ namespace TestApi.Tests
                         Id = 1,
                         Text = "Який тип даних використовується для зберігання цілого числа в C#?",
                         Type = QuestionType.SingleChoice,
+                        Score = 1,
                         Options = new()
                         {
                             new AnswerOption { Id = 1, Text = "int",    IsCorrect = true  },
@@ -39,6 +40,7 @@ namespace TestApi.Tests
                         Id = 2,
                         Text = "Які з наведених типів є посилальними?",
                         Type = QuestionType.MultipleChoice,
+                        Score = 2,
                         Options = new()
                         {
                             new AnswerOption { Id = 1, Text = "class",  IsCorrect = true  },
@@ -51,6 +53,7 @@ namespace TestApi.Tests
                         Id = 3,
                         Text = "Напишіть ключове слово для виведення тексту в консоль у C#.",
                         Type = QuestionType.Text,
+                        Score = 2,
                         CorrectTextAnswer = "Console.WriteLine"
                     }
                 }

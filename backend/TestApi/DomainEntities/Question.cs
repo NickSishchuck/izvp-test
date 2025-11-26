@@ -24,6 +24,11 @@ namespace TestApi.DomainEntities
         public QuestionType Type { get; set; }
 
         /// <summary>
+        /// Score value assigned to the question.
+        /// </summary>
+        public int Score { get; set; }
+
+        /// <summary>
         /// Correct text answer for the question.
         /// </summary>
         public string? CorrectTextAnswer { get; set; }
