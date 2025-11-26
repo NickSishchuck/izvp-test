@@ -6,6 +6,7 @@
       "text": "Який тип даних використовується для зберігання цілого числа в C#?",
       "type": "SingleChoice",
       "correctTextAnswer": null,
+      "score" : 1,
       "options": [
         {
           "id": 1,
@@ -29,6 +30,7 @@
       "text": "Які з наведених типів є посилальними?",
       "type": "MultipleChoice",
       "correctTextAnswer": null,
+      "score" : 2,
       "options": [
         {
           "id": 1,
@@ -52,6 +54,7 @@
       "text": "Напишіть ключове слово для виведення тексту в консоль у C#.",
       "type": "Text",
       "correctTextAnswer": "Console.WriteLine",
+      "score" : 2,
       "options": []
     }
   ]
