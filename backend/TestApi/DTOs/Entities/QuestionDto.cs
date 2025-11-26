@@ -20,6 +20,11 @@ namespace TestApi.DTOs.Entities
         public string Text { get; set; } = "";
 
         /// <summary>
+        /// Score value assigned to the question.
+        /// </summary>
+        public int Score { get; set; }
+
+        /// <summary>
         /// The type of the question.
         /// </summary>
         public string Type { get; set; } = "";
