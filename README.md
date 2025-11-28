@@ -22,7 +22,7 @@ Backend lead - Dmytro
 
 ## Architecture Diagrams
 
-### API Sequence Deagram
+### API Sequence Diagram
 ![API Sequence Diagram](docs/api_sequence.png)
 
 ### Class Diagram
