@@ -1,11 +1,12 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace TestApi.DTOs.Entities
+namespace TestApi.DTOs.Responses.TestResponseAggregate
 {
-    [ExcludeFromCodeCoverage]
+
     /// <summary>
     /// DTO representing an answer option.
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class AnswerOptionDto
     {
         /// <summary>

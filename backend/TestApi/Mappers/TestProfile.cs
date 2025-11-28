@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using TestApi.DomainEntities;
-using TestApi.DTOs.Entities;
-using TestApi.DTOs.Responses;
+using TestApi.DTOs.Responses.TestResponseAggregate;
 
 namespace TestApi.Mappers
 {
@@ -13,7 +12,7 @@ namespace TestApi.Mappers
         public TestProfile()
         {
             // TestEntity -> TestResponseDto
-            CreateMap<TestEntity, TestResponseDto>();
+            CreateMap<TestEntity, TestResponse>();
 
             // Question -> QuestionDto
             CreateMap<Question, QuestionDto>()

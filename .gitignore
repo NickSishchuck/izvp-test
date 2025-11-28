@@ -364,3 +364,4 @@ FodyWeavers.xsd
 
 # Mermaid diagrams
 *.mmd
+/backend/TestApi/TestJson/UserTestsResults/testResults.json
