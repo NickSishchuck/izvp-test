@@ -27,3 +27,5 @@ Backend lead - Dmytro
 
 ### Class Diagram
 ![Class Diagram](docs/class_diagram.png)
+
++++
