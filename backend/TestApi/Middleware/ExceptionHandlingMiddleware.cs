@@ -33,7 +33,7 @@ namespace TestApi.Middleware
                     Type = "https://httpstatuses.com/500",
 
                     // Short, human-readable summary
-                    Title = "Internal Server Error", 
+                    Title = "Internal Server Error",
 
                     // HTTP status code
                     Status = (int)HttpStatusCode.InternalServerError,

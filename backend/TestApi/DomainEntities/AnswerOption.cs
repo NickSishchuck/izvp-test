@@ -2,10 +2,10 @@
 
 namespace TestApi.DomainEntities
 {
-    [ExcludeFromCodeCoverage]
     /// <summary>
     /// Represents a selectable answer option for a question, including its display text and correctness.
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class AnswerOption
     {
         /// <summary>

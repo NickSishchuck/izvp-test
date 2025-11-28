@@ -2,10 +2,10 @@
 
 namespace TestApi.DomainEntities
 {
-    [ExcludeFromCodeCoverage]
     /// <summary>
     /// Represents a question entity within the application domain.
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class Question
     {
         /// <summary>

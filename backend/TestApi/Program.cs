@@ -1,10 +1,14 @@
 using System.Diagnostics.CodeAnalysis;
-using Microsoft.OpenApi.Models;
+using FluentValidation;
+using Microsoft.OpenApi;
 using Serilog;
+using Swashbuckle.AspNetCore.Filters;
 using TestApi.Implementations;
+using TestApi.Implementations.Repositories;
 using TestApi.Interfaces;
-using TestApi.Mappers;
 using TestApi.Middleware;
+using TestApi.Swagger.Examples;
+using TestApi.Validators;
 
 namespace TestApi
 {
@@ -40,7 +44,7 @@ namespace TestApi
                     options.LowercaseUrls = true;
                     options.LowercaseQueryStrings = true;
                 });
-                
+
                 // Dependency Injection
                 builder.Services.AddMediatR(cfg =>
                 {
@@ -53,6 +57,11 @@ namespace TestApi
                 });
 
                 builder.Services.AddScoped<IJsonSerializer, JsonSerializer>();
+                builder.Services.AddScoped<ITestEvaluationService, TestEvaluationService>();
+                builder.Services.AddScoped<ITestRepository, TestRepository>();
+
+                builder.Services.AddValidatorsFromAssemblyContaining<TestSubmitRequestValidator>();
+                builder.Services.AddSwaggerExamplesFromAssemblyOf<TestSubmitRequestExample>();
 
                 // Controllers
                 builder.Services.AddControllers();
@@ -61,6 +70,7 @@ namespace TestApi
                 builder.Services.AddEndpointsApiExplorer();
                 builder.Services.AddSwaggerGen(c =>
                 {
+                    c.ExampleFilters();
                     c.SwaggerDoc("v1", new OpenApiInfo
                     {
                         Title = "Test API",

@@ -1,8 +1,6 @@
-﻿using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using TestApi.UseCases.Commands;
-using TestApi.UseCases.Handlers;
+using TestApi.UseCases.Queries;
 
 namespace TestApi.Controllers
 {
@@ -22,7 +20,7 @@ namespace TestApi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetHealth(CancellationToken cancellation)
         {
-            var command = new GetHealthCommand();
+            var command = new GetHealthQuery();
             var result = await mediator.Send(command, cancellation);
 
             if (result.IsSuccess)

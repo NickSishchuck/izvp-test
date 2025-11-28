@@ -1,7 +1,7 @@
-﻿using System.Text.Json;
+﻿using System.Text.Encodings.Web;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using TestApi.Interfaces;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace TestApi.Implementations
 {
@@ -16,19 +16,21 @@ namespace TestApi.Implementations
         private readonly JsonSerializerOptions _options = new()
         {
             // Minified output
-            WriteIndented = false, 
+            WriteIndented = false,
 
             // Use camelCase for property names
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase, 
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
 
             // Use camelCase for dictionary keys
             DictionaryKeyPolicy = JsonNamingPolicy.CamelCase,
 
             // Case insensitive property matching
-            PropertyNameCaseInsensitive = true, 
+            PropertyNameCaseInsensitive = true,
 
             // Convert enums to/from strings
-            Converters = { new JsonStringEnumConverter() }
+            Converters = { new JsonStringEnumConverter() },
+
+            Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
         };
 
         public T FromJson<T>(string json)

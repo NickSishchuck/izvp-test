@@ -2,10 +2,10 @@
 
 namespace TestApi.DomainEntities
 {
-    [ExcludeFromCodeCoverage]
     /// <summary>
     /// Represents a test entity that contains a title and a collection of questions.
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class TestEntity
     {
         /// <summary>

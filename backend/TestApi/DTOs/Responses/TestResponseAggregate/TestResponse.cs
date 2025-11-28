@@ -1,13 +1,12 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using TestApi.DTOs.Entities;
 
-namespace TestApi.DTOs.Responses
+namespace TestApi.DTOs.Responses.TestResponseAggregate
 {
-    [ExcludeFromCodeCoverage]
     /// <summary>
     /// DTO representing a test response.
     /// </summary>
-    public class TestResponseDto
+    [ExcludeFromCodeCoverage]
+    public class TestResponse
     {
         /// <summary>
         /// The title of the test.

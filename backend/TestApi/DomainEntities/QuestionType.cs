@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-namespace TestApi.DomainEntities
+﻿namespace TestApi.DomainEntities
 {
     /// <summary>
     /// Specifies the type of question presented to a user in a survey or form.

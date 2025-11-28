@@ -1,7 +1,7 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
-using TestApi.DomainEntities;
 using FluentAssertions; // For fluent assertions in tests (human readable assertions)
+using TestApi.DomainEntities;
 
 namespace TestApi.Tests
 {
