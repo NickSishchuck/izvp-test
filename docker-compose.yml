@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: test-api
+    ports:
+      - "5000:5000"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5000
+    volumes:
+      - ./backend/TestApi/Test_Json:/app/Test_Json
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  frontend:
+    image: caddy:2-alpine
+    container_name: test-frontend
+    ports:
+      - "8080:80"
+      - "443:443"
+    volumes:
+      - ./frontend:/srv
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - app-network
+    restart: unless-stopped
+    depends_on:
+      - backend
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  caddy_data:
+  caddy_config:
