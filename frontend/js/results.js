@@ -1,17 +1,22 @@
 // This file handles the results page functionality
+// The API object is available globally from api.js
 
 /**
  * TODO: Load and display test results when page loads
  *
  * Steps:
- * 1. Get test result from sessionStorage
- * 2. Get user name from sessionStorage
+ * 1. Use API.getTestResult() to get the saved result
+ * 2. Use API.getUserName() to get the user's name
  * 3. If no result found, redirect back to index.html
  * 4. Display personalized greeting with user's name
  * 5. Display score (e.g., "15/30")
- * 6. Display additional statistics (correct answers, percentage, etc.)
+ * 6. Display additional statistics
  *
- * Result object format (from API):
+ * HINT: The API object provides:
+ * - API.getTestResult() - Returns saved result object
+ * - API.getUserName() - Returns user's name
+ *
+ * Expected result object format:
  * {
  *   "name": "Maria",
  *   "score": 5,
@@ -22,31 +27,26 @@
  */
 function loadResults() {
   try {
-    // TODO: Get result from sessionStorage
-    // const resultData = sessionStorage.getItem('testResult');
+    // TODO: Get result from sessionStorage using API helper
+    // const result = API.getTestResult();
 
     // TODO: Check if result exists
-    // if (!resultData) {
+    // if (!result) {
     //     // No result found, redirect to start
     //     window.location.href = 'index.html';
     //     return;
     // }
 
-    // TODO: Parse result JSON
-    // const result = JSON.parse(resultData);
-
     // TODO: Display personalized greeting
-    // displayGreeting(result.name, result.score, result.totalScore);
 
     // TODO: Display score
-    // displayScore(result.score, result.totalScore);
 
     // TODO: Display statistics
-    // displayStats(result);
+
+    console.log("Results loaded successfully!");
   } catch (error) {
-    // TODO: Handle error
-    // console.error('Error loading results:', error);
-    // showError('Помилка завантаження результатів');
+    console.error("Error loading results:", error);
+    showError("Помилка завантаження результатів");
   }
 }
 
@@ -57,29 +57,20 @@ function loadResults() {
  * @param {number} score - Points scored
  * @param {number} totalScore - Total possible points
  *
- * Examples:
- * - If score is perfect: "MARIA YOU ARE THE BEST!"
- * - If score is good: "GREAT JOB, MARIA!"
- * - If score is okay: "GOOD TRY, MARIA!"
+ * Examples based on performance:
+ * - 100%: "{NAME}, YOU ARE THE BEST!"
+ * - 80-99%: "GREAT JOB, {NAME}"
+ * - 60-79%: "GOOD TRY, {NAME}"
+ * - <60%: "KEEP LEARNING, {NAME}"
  */
 function displayGreeting(name, score, totalScore) {
   // TODO: Get greeting element
   // const greetingElement = document.getElementById('results-greeting');
 
-  // TODO: Calculate performance
+  // TODO: Calculate performance percentage
   // const percentage = (score / totalScore) * 100;
 
   // TODO: Create personalized message based on performance
-  // let message = '';
-  // if (percentage === 100) {
-  //     message = `${name.toUpperCase()} YOU ARE THE BEST!`;
-  // } else if (percentage >= 80) {
-  //     message = `GREAT JOB, ${name.toUpperCase()}!`;
-  // } else if (percentage >= 60) {
-  //     message = `GOOD TRY, ${name.toUpperCase()}!`;
-  // } else {
-  //     message = `KEEP LEARNING, ${name.toUpperCase()}!`;
-  // }
 
   // TODO: Update greeting element
   // greetingElement.textContent = message;
@@ -90,12 +81,14 @@ function displayGreeting(name, score, totalScore) {
  *
  * @param {number} score - Points scored
  * @param {number} totalScore - Total possible points
+ *
+ * Should display as: "15/30" format
  */
 function displayScore(score, totalScore) {
   // TODO: Get score element
   // const scoreElement = document.getElementById('score-value');
 
-  // TODO: Format and display score
+  // TODO: Format and display score as "score/totalScore"
   // scoreElement.textContent = `${score}/${totalScore}`;
 }
 
@@ -103,6 +96,10 @@ function displayScore(score, totalScore) {
  * TODO: Display additional statistics
  *
  * @param {Object} result - Full result object
+ *
+ * Should show:
+ * - Correct answers count (e.g., "3 з 3")
+ * - Percentage (e.g., "100.0%")
  */
 function displayStats(result) {
   // TODO: Get stats element
@@ -125,14 +122,15 @@ function displayStats(result) {
  * TODO: Handle retry button click
  *
  * Steps:
- * 1. Clear sessionStorage (remove old test data and results)
- * 2. Navigate back to index.html to start fresh
+ * 1. Use API.clearAllData() to remove all stored data
+ * 2. Navigate back to index.html
+ *
+ * HINT: The API object provides:
+ * - API.clearAllData() - Clears all sessionStorage data
  */
 function handleRetry() {
-  // TODO: Clear stored data
-  // sessionStorage.removeItem('testResult');
-  // sessionStorage.removeItem('testData');
-  // sessionStorage.removeItem('userName');
+  // TODO: Clear all stored data using API helper
+  // API.clearAllData();
 
   // TODO: Navigate to start page
   // window.location.href = 'index.html';
@@ -142,6 +140,11 @@ function handleRetry() {
  * TODO: Show error message to user
  *
  * @param {string} message - The error message to display
+ *
+ * Steps:
+ * 1. Get error element (#error-message)
+ * 2. Set message text
+ * 3. Show element (display: block)
  */
 function showError(message) {
   // TODO: Get error message element
@@ -170,46 +173,4 @@ function init() {
   // retryButton.addEventListener('click', handleRetry);
 }
 
-// Initialize when DOM is fully loaded
 document.addEventListener("DOMContentLoaded", init);
-
-// ============================================================================
-// CODE SNIPPETS FOR REFERENCE
-// ============================================================================
-
-/*
-// Example: Get data from sessionStorage
-const data = sessionStorage.getItem('key');
-const object = JSON.parse(sessionStorage.getItem('objectKey'));
-
-// Example: Remove data from sessionStorage
-sessionStorage.removeItem('key');
-sessionStorage.clear(); // Clear all
-
-// Example: Check if data exists
-if (!sessionStorage.getItem('key')) {
-    // Data doesn't exist
-    window.location.href = 'index.html';
-}
-
-// Example: Calculate percentage
-const percentage = (score / total * 100).toFixed(1); // One decimal place
-
-// Example: String manipulation
-const name = "maria";
-const upperName = name.toUpperCase(); // "MARIA"
-
-// Example: Conditional messages
-let message;
-if (percentage === 100) {
-    message = "Perfect!";
-} else if (percentage >= 80) {
-    message = "Great!";
-} else {
-    message = "Good try!";
-}
-
-// Example: Update element content
-element.textContent = "Text only";
-element.innerHTML = "<p>HTML content</p>";
-*/

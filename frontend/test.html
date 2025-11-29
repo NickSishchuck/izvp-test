@@ -1,1 +1,68 @@
-// If you see this, don't touch it.
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qizzly - Тестування</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header with branding -->
+        <header class="header">
+            <div class="header-line"></div>
+            <h1 class="logo">Qizzly</h1>
+            <div class="header-line"></div>
+        </header>
+
+        <!-- Main content area -->
+        <main class="test-main">
+            <!-- Progress indicator -->
+            <div class="test-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <p class="progress-text" id="progress-text">Question 1 of 3</p>
+            </div>
+
+            <!-- Question card -->
+            <div class="question-card" id="question-card">
+                <!-- Question number and text -->
+                <div class="question-header">
+                    <span class="question-number" id="question-number">1.</span>
+                    <h2 class="question-text" id="question-text">Loading question...</h2>
+                </div>
+
+                <!-- Answer options (dynamically rendered based on question type) -->
+                <div class="question-options" id="question-options">
+                    <!-- Options will be inserted here by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Navigation buttons -->
+            <div class="test-navigation">
+                <button id="prev-button" class="btn btn-secondary" style="display: none;">
+                    Previous
+                </button>
+                <button id="next-button" class="btn btn-primary">
+                    Next
+                </button>
+                <button id="submit-button" class="btn btn-primary" style="display: none;">
+                    Submit Test
+                </button>
+            </div>
+
+            <!-- Error message area (hidden by default) -->
+            <div id="error-message" class="error-message" style="display: none;"></div>
+
+            <!-- Loading indicator (hidden by default) -->
+            <div id="loading" class="loading" style="display: none;">
+                Завантаження...
+            </div>
+        </main>
+    </div>
+
+    <script src="/js/api.js"></script>
+    <script src="/js/test.js"></script>
+</body>
+</html>

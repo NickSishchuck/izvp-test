@@ -1,4 +1,3 @@
-/* CSS Variables - Design System */
 :root {
     /* Colors from mockup */
     --bg-dark-start: #1a1a2e;
@@ -73,10 +72,8 @@ body {
     color: var(--text-light);
     min-height: 100vh;
     
-    /* TODO: Add gradient background matching the mockup */
-    /* HINT: Use linear-gradient with --bg-dark-start and --bg-dark-end */
-    /* Example: background: linear-gradient(135deg, var(--bg-dark-start) 0%, var(--bg-dark-end) 100%); */
-    background: #1a1a2e; /* Temporary - replace with gradient */
+    /* Gradient background matching the mockup */
+    background: linear-gradient(135deg, var(--bg-dark-start) 0%, var(--bg-dark-end) 100%);
 }
 
 /* ============================================================================
@@ -109,8 +106,6 @@ body {
 }
 
 .header-line {
-    /* TODO: Style the decorative lines on sides of logo */
-    /* HINT: Use border-top or background with specific width and height */
     width: 200px;
     height: 1px;
     background: rgba(255, 255, 255, 0.3);
@@ -150,8 +145,6 @@ body {
 }
 
 .greeting-title {
-    /* TODO: Style the main heading to match mockup */
-    /* HINT: Large font size, white color, lowercase text transform */
     font-size: var(--font-size-3xl);
     font-weight: 300;
     line-height: 1.2;
@@ -161,13 +154,10 @@ body {
 
 /* Decorative graphics (3D knot elements) */
 .decorative-graphic {
-    /* TODO: Position and style decorative elements */
-    /* HINT: Use position absolute, can use background-image or leave for intern to add */
     position: absolute;
     width: 200px;
     height: 200px;
     opacity: 0.8;
-    /* Intern can add actual graphics or use placeholder */
 }
 
 .decorative-graphic-left {
@@ -187,8 +177,6 @@ body {
 }
 
 .name-input {
-    /* TODO: Style input field to match mockup */
-    /* HINT: Full width, padding, rounded corners, semi-transparent background */
     width: 100%;
     padding: var(--spacing-sm) var(--spacing-md);
     background: var(--input-bg);
@@ -204,7 +192,6 @@ body {
 }
 
 .name-input:focus {
-    /* TODO: Add focus state */
     outline: none;
     border-color: var(--accent-primary);
     background: rgba(255, 255, 255, 0.1);
@@ -234,8 +221,6 @@ body {
 }
 
 .results-greeting {
-    /* TODO: Style the personalized greeting */
-    /* HINT: Large, bold, uppercase text */
     font-size: var(--font-size-2xl);
     font-weight: 700;
     text-transform: uppercase;
@@ -248,7 +233,6 @@ body {
 }
 
 .score-label {
-    /* TODO: Style "your result is" label */
     font-size: var(--font-size-base);
     color: var(--text-muted);
     text-transform: lowercase;
@@ -256,8 +240,6 @@ body {
 }
 
 .score-value {
-    /* TODO: Style the big score display (e.g., "15/30") */
-    /* HINT: Very large font, bold, prominent */
     font-size: var(--font-size-4xl);
     font-weight: 700;
     color: var(--text-light);
@@ -265,7 +247,6 @@ body {
 }
 
 .stats-details {
-    /* TODO: Style additional statistics */
     color: var(--text-muted);
     font-size: var(--font-size-base);
 }
@@ -275,7 +256,6 @@ body {
 }
 
 .result-saved {
-    /* TODO: Style "your result has been recorded" message */
     color: var(--text-muted);
     font-size: var(--font-size-base);
     text-transform: lowercase;
@@ -284,6 +264,154 @@ body {
 
 .results-actions {
     margin-top: var(--spacing-lg);
+}
+
+/* ============================================================================
+   Test Page Styles
+   ============================================================================ */
+
+.test-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-lg) 0;
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Progress indicator */
+.test-progress {
+    text-align: center;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: var(--card-bg);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    margin-bottom: var(--spacing-sm);
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--accent-primary);
+    border-radius: var(--radius-full);
+    transition: width var(--transition-base);
+}
+
+.progress-text {
+    color: var(--text-muted);
+    font-size: var(--font-size-sm);
+    text-transform: lowercase;
+}
+
+/* Question card */
+.question-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    backdrop-filter: blur(10px);
+}
+
+.question-header {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+}
+
+.question-number {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    color: var(--accent-primary);
+    flex-shrink: 0;
+}
+
+.question-text {
+    font-size: var(--font-size-lg);
+    font-weight: 400;
+    color: var(--text-light);
+    line-height: 1.5;
+}
+
+/* Question options */
+.question-options {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.option-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.option-item:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: var(--accent-primary);
+}
+
+.option-input {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: var(--accent-primary);
+}
+
+.option-input[type="radio"],
+.option-input[type="checkbox"] {
+    flex-shrink: 0;
+}
+
+.option-label {
+    flex: 1;
+    cursor: pointer;
+    color: var(--text-light);
+    font-size: var(--font-size-base);
+    user-select: none;
+}
+
+/* Text input for open questions */
+.text-answer-input {
+    width: 100%;
+    padding: var(--spacing-md);
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: var(--radius-md);
+    color: var(--text-light);
+    font-size: var(--font-size-base);
+    font-family: var(--font-family);
+    resize: vertical;
+    min-height: 120px;
+    transition: all var(--transition-base);
+}
+
+.text-answer-input::placeholder {
+    color: var(--text-muted);
+}
+
+.text-answer-input:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Test navigation */
+.test-navigation {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
 }
 
 /* ============================================================================
@@ -303,22 +431,35 @@ body {
 }
 
 .btn-primary {
-    /* TODO: Style primary button to match mockup */
-    /* HINT: Purple/lavender background, white text, hover effects */
     background: var(--accent-primary);
     color: var(--text-light);
 }
 
 .btn-primary:hover {
-    /* TODO: Add hover state */
     background: var(--accent-hover);
     transform: translateY(-2px);
     box-shadow: 0 8px 24px rgba(155, 135, 245, 0.3);
 }
 
 .btn-primary:active {
-    /* TODO: Add active/pressed state */
     background: var(--accent-active);
+    transform: translateY(0);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--text-light);
+    border: 1px solid var(--input-border);
+}
+
+.btn-secondary:hover {
+    background: var(--input-bg);
+    border-color: var(--accent-primary);
+    transform: translateY(-2px);
+}
+
+.btn-secondary:active {
+    background: rgba(255, 255, 255, 0.05);
     transform: translateY(0);
 }
 
@@ -339,7 +480,6 @@ body {
 }
 
 .error-message {
-    /* TODO: Style error messages */
     background: var(--error-bg);
     border: 1px solid var(--error-border);
     color: var(--error-text);
@@ -347,6 +487,7 @@ body {
     border-radius: var(--radius-sm);
     margin-top: var(--spacing-md);
     max-width: 400px;
+    text-align: center;
 }
 
 /* ============================================================================
@@ -373,6 +514,18 @@ body {
     .decorative-graphic {
         display: none; /* Hide on mobile for simplicity */
     }
+    
+    .question-card {
+        padding: var(--spacing-md);
+    }
+    
+    .question-text {
+        font-size: var(--font-size-base);
+    }
+    
+    .test-navigation {
+        flex-direction: column;
+    }
 }
 
 @media (max-width: 480px) {
@@ -387,5 +540,8 @@ body {
     .results-greeting {
         font-size: var(--font-size-lg);
     }
+    
+    .question-number {
+        font-size: var(--font-size-lg);
+    }
 }
-
