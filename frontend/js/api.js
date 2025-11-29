@@ -120,19 +120,6 @@ function getTestResult() {
 }
 
 /**
- * Clear all stored data (used when retrying the test)
- *
- * @example
- * API.clearAllData();
- * window.location.href = 'index.html';
- */
-function clearAllData() {
-  sessionStorage.removeItem("userName");
-  sessionStorage.removeItem("testData");
-  sessionStorage.removeItem("testResult");
-}
-
-/**
  * Check API health status
  * Useful for debugging connection issues
  *
@@ -171,7 +158,6 @@ const API = {
   getTestData,
   storeTestResult,
   getTestResult,
-  clearAllData,
 };
 
 // Make available globally

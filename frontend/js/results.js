@@ -39,11 +39,6 @@ function displayStats(result) {
   // Your implementation here
 }
 
-// TODO: Clear all data and navigate to index.html
-function handleRetry() {
-  // Your implementation here
-}
-
 // TODO: Display error in #error-message element
 function showError(message) {
   // Your implementation here
