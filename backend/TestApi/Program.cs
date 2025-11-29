@@ -59,6 +59,7 @@ namespace TestApi
                 builder.Services.AddScoped<IJsonSerializer, JsonSerializer>();
                 builder.Services.AddScoped<ITestEvaluationService, TestEvaluationService>();
                 builder.Services.AddScoped<ITestRepository, TestRepository>();
+                builder.Services.AddTransient<IAdminAuthService, AdminAuthServiceImplementation>();
 
                 builder.Services.AddValidatorsFromAssemblyContaining<TestSubmitRequestValidator>();
                 builder.Services.AddSwaggerExamplesFromAssemblyOf<TestSubmitRequestExample>();
