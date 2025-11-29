@@ -1,0 +1,18 @@
+:80 {
+    root * /srv
+    
+    file_server
+    
+    # Reverse proxy API requests to backend
+    reverse_proxy /api/* backend:5000
+    
+    encode gzip
+    
+    # SPA fallback - if file not found, serve index.html
+    try_files {path} /index.html
+    
+    log {
+        output stdout
+        format console
+    }
+}
