@@ -1,142 +1,391 @@
+/* CSS Variables - Design System */
+:root {
+    /* Colors from mockup */
+    --bg-dark-start: #1a1a2e;
+    --bg-dark-end: #16213e;
+    --text-light: #ffffff;
+    --text-muted: #b8b8d1;
+    
+    /* Accent colors - purple/lavender buttons */
+    --accent-primary: #9b87f5;
+    --accent-hover: #b8a9f7;
+    --accent-active: #8470e8;
+    
+    /* Component colors */
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --card-border: rgba(255, 255, 255, 0.1);
+    --input-bg: rgba(255, 255, 255, 0.08);
+    --input-border: rgba(255, 255, 255, 0.2);
+    
+    /* Error states */
+    --error-bg: rgba(239, 68, 68, 0.1);
+    --error-border: #ef4444;
+    --error-text: #fca5a5;
+    
+    /* Spacing */
+    --spacing-xs: 8px;
+    --spacing-sm: 16px;
+    --spacing-md: 24px;
+    --spacing-lg: 32px;
+    --spacing-xl: 48px;
+    --spacing-2xl: 64px;
+    
+    /* Border radius */
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-full: 9999px;
+    
+    /* Typography */
+    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Space Grotesk', sans-serif;
+    --font-size-sm: 14px;
+    --font-size-base: 16px;
+    --font-size-lg: 18px;
+    --font-size-xl: 24px;
+    --font-size-2xl: 32px;
+    --font-size-3xl: 48px;
+    --font-size-4xl: 64px;
+    
+    /* Transitions */
+    --transition-fast: 150ms ease;
+    --transition-base: 250ms ease;
+    --transition-slow: 350ms ease;
+}
+
+/* ============================================================================
+   Base Styles
+   ============================================================================ */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background-color: #f4f4f4;
+html {
+    height: 100%;
 }
+
+body {
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+    color: var(--text-light);
+    min-height: 100vh;
+    
+    /* TODO: Add gradient background matching the mockup */
+    /* HINT: Use linear-gradient with --bg-dark-start and --bg-dark-end */
+    /* Example: background: linear-gradient(135deg, var(--bg-dark-start) 0%, var(--bg-dark-end) 100%); */
+    background: #1a1a2e; /* Temporary - replace with gradient */
+}
+
+/* ============================================================================
+   Layout Components
+   ============================================================================ */
 
 .container {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: var(--spacing-md);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-header {
-    background: #007bff;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    border-radius: 8px;
-    margin-bottom: 30px;
-}
-
-header h1 {
-    font-size: 2rem;
-}
-
-main {
-    background: white;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    min-height: 400px;
-}
-
-.loading {
-    text-align: center;
-    padding: 50px;
-    color: #666;
-    font-size: 1.2rem;
-}
-
-.question {
-    margin-bottom: 30px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-}
-
-.question h3 {
-    margin-bottom: 15px;
-    color: #007bff;
-}
-
-.options {
-    margin-top: 10px;
-}
-
-.option {
-    margin: 10px 0;
-}
-
-.option label {
+/* Header with logo and lines */
+.header {
     display: flex;
     align-items: center;
-    cursor: pointer;
-    padding: 10px;
-    border-radius: 4px;
-    transition: background-color 0.2s;
+    justify-content: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg) 0;
 }
 
-.option label:hover {
-    background-color: #f0f0f0;
+.logo {
+    font-size: var(--font-size-2xl);
+    font-weight: 600;
+    color: var(--text-light);
+    letter-spacing: 2px;
 }
 
-.option input {
-    margin-right: 10px;
+.header-line {
+    /* TODO: Style the decorative lines on sides of logo */
+    /* HINT: Use border-top or background with specific width and height */
+    width: 200px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.3);
 }
 
-input[type="text"] {
+/* Utility class for screen readers */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ============================================================================
+   Greeting Page Styles
+   ============================================================================ */
+
+.greeting-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-xl);
+    padding: var(--spacing-2xl) 0;
+    position: relative;
+}
+
+.greeting-content {
+    text-align: center;
+    position: relative;
+}
+
+.greeting-title {
+    /* TODO: Style the main heading to match mockup */
+    /* HINT: Large font size, white color, lowercase text transform */
+    font-size: var(--font-size-3xl);
+    font-weight: 300;
+    line-height: 1.2;
+    text-transform: lowercase;
+    color: var(--text-light);
+}
+
+/* Decorative graphics (3D knot elements) */
+.decorative-graphic {
+    /* TODO: Position and style decorative elements */
+    /* HINT: Use position absolute, can use background-image or leave for intern to add */
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    opacity: 0.8;
+    /* Intern can add actual graphics or use placeholder */
+}
+
+.decorative-graphic-left {
+    bottom: 0;
+    left: -100px;
+}
+
+.decorative-graphic-right {
+    top: -50px;
+    right: -100px;
+}
+
+/* Name input section */
+.name-input-section {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 1rem;
+    max-width: 400px;
 }
 
-button {
-    background: #007bff;
-    color: white;
+.name-input {
+    /* TODO: Style input field to match mockup */
+    /* HINT: Full width, padding, rounded corners, semi-transparent background */
+    width: 100%;
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: var(--radius-md);
+    color: var(--text-light);
+    font-size: var(--font-size-base);
+    transition: all var(--transition-base);
+}
+
+.name-input::placeholder {
+    color: var(--text-muted);
+}
+
+.name-input:focus {
+    /* TODO: Add focus state */
+    outline: none;
+    border-color: var(--accent-primary);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* ============================================================================
+   Results Page Styles
+   ============================================================================ */
+
+.results-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-2xl) 0;
+    position: relative;
+}
+
+.results-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.results-greeting {
+    /* TODO: Style the personalized greeting */
+    /* HINT: Large, bold, uppercase text */
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-light);
+    letter-spacing: 1px;
+}
+
+.score-display {
+    margin: var(--spacing-lg) 0;
+}
+
+.score-label {
+    /* TODO: Style "your result is" label */
+    font-size: var(--font-size-base);
+    color: var(--text-muted);
+    text-transform: lowercase;
+    margin-bottom: var(--spacing-sm);
+}
+
+.score-value {
+    /* TODO: Style the big score display (e.g., "15/30") */
+    /* HINT: Very large font, bold, prominent */
+    font-size: var(--font-size-4xl);
+    font-weight: 700;
+    color: var(--text-light);
+    line-height: 1;
+}
+
+.stats-details {
+    /* TODO: Style additional statistics */
+    color: var(--text-muted);
+    font-size: var(--font-size-base);
+}
+
+.stats-details p {
+    margin: var(--spacing-xs) 0;
+}
+
+.result-saved {
+    /* TODO: Style "your result has been recorded" message */
+    color: var(--text-muted);
+    font-size: var(--font-size-base);
+    text-transform: lowercase;
+    margin-top: var(--spacing-md);
+}
+
+.results-actions {
+    margin-top: var(--spacing-lg);
+}
+
+/* ============================================================================
+   Button Styles
+   ============================================================================ */
+
+.btn {
+    /* Base button styles */
+    padding: var(--spacing-sm) var(--spacing-xl);
     border: none;
-    padding: 12px 30px;
-    border-radius: 6px;
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-base);
+    font-weight: 500;
     cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.2s;
+    transition: all var(--transition-base);
+    text-transform: capitalize;
 }
 
-button:hover {
-    background: #0056b3;
+.btn-primary {
+    /* TODO: Style primary button to match mockup */
+    /* HINT: Purple/lavender background, white text, hover effects */
+    background: var(--accent-primary);
+    color: var(--text-light);
 }
 
-button:disabled {
-    background: #ccc;
+.btn-primary:hover {
+    /* TODO: Add hover state */
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(155, 135, 245, 0.3);
+}
+
+.btn-primary:active {
+    /* TODO: Add active/pressed state */
+    background: var(--accent-active);
+    transform: translateY(0);
+}
+
+.btn:disabled {
+    opacity: 0.5;
     cursor: not-allowed;
 }
 
-.result {
+/* ============================================================================
+   State Components
+   ============================================================================ */
+
+.loading {
     text-align: center;
-    padding: 30px;
+    padding: var(--spacing-xl);
+    color: var(--text-muted);
+    font-size: var(--font-size-lg);
 }
 
-.result h2 {
-    color: #28a745;
-    margin-bottom: 20px;
+.error-message {
+    /* TODO: Style error messages */
+    background: var(--error-bg);
+    border: 1px solid var(--error-border);
+    color: var(--error-text);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-sm);
+    margin-top: var(--spacing-md);
+    max-width: 400px;
 }
 
-.score {
-    font-size: 3rem;
-    font-weight: bold;
-    color: #007bff;
-    margin: 20px 0;
+/* ============================================================================
+   Responsive Design
+   ============================================================================ */
+
+@media (max-width: 768px) {
+    .header-line {
+        width: 80px;
+    }
+    
+    .logo {
+        font-size: var(--font-size-xl);
+    }
+    
+    .greeting-title {
+        font-size: var(--font-size-2xl);
+    }
+    
+    .score-value {
+        font-size: var(--font-size-3xl);
+    }
+    
+    .decorative-graphic {
+        display: none; /* Hide on mobile for simplicity */
+    }
 }
 
-.error {
-    background: #f8d7da;
-    color: #721c24;
-    padding: 15px;
-    border-radius: 6px;
-    margin-bottom: 20px;
+@media (max-width: 480px) {
+    .container {
+        padding: var(--spacing-sm);
+    }
+    
+    .greeting-title {
+        font-size: var(--font-size-xl);
+    }
+    
+    .results-greeting {
+        font-size: var(--font-size-lg);
+    }
 }
 
-footer {
-    text-align: center;
-    margin-top: 30px;
-    color: #666;
-}
