@@ -86,6 +86,7 @@ namespace TestApi.UseCases.Handlers
                 UserName = testDto.UserName,
                 TestName = testDto.Title,
                 Score = result.Score,
+                TotalScore = result.TotalScore,
                 PassedAt = DateTime.UtcNow
             };
 

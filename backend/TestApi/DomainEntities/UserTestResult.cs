@@ -24,6 +24,11 @@ namespace TestApi.DomainEntities
         public int Score { get; set; }
 
         /// <summary>
+        /// The score the user could achieve for this test.
+        /// </summary>
+        public int TotalScore { get; set; }
+
+        /// <summary>
         /// The UTC date and time when the test was completed.
         /// </summary>
         public DateTime PassedAt { get; set; }
