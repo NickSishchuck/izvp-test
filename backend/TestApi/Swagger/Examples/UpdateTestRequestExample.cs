@@ -1,22 +1,15 @@
-﻿using TestApi.DomainEntities;
+﻿using Swashbuckle.AspNetCore.Filters;
+using TestApi.DomainEntities;
 
-namespace TestApi.Tests
+namespace TestApi.Swagger.Examples
 {
-    /// <summary>
-    /// Provides factory methods for creating <see cref="TestEntity"/> for use in testing or demonstration scenarios.
-    /// </summary>
-    internal static class TestFactory
+    public class UpdateTestRequestExample : IExamplesProvider<TestEntity>
     {
-        /// <summary>
-        /// Creates a sample test entity containing beginner-level C# questions in Ukrainian.
-        /// </summary>
-        /// <returns>A <see cref="TestEntity"/> instance pre-populated with Ukrainian-language questions and answer options
-        /// suitable for C# beginners.</returns>
-        public static TestEntity CreateUkrainianTest()
+        public TestEntity GetExamples()
         {
             return new TestEntity
             {
-                Id = Guid.NewGuid(),
+                Id = Guid.Parse("00000000-0000-0000-0000-000000000001"),
                 Title = "Тест з C# для початківців",
                 Questions = new List<Question>
                 {

@@ -11,6 +11,13 @@ namespace TestApi.Interfaces
         Task<TestEntity> LoadMainTest(CancellationToken cancellationToken);
 
         /// <summary>
+        /// Rewrites main test.
+        /// </summary>
+        /// <param name="test">New test</param>
+        /// <param name="cancellationToken">The token used to cancel the operation.</param>
+        Task SaveMainTestAsync(TestEntity test, CancellationToken cancellationToken = default);
+
+        /// <summary>
         /// Loads all stored user test results.
         /// </summary>
         /// <param name="cancellationToken">The token used to cancel the operation.</param>
@@ -27,10 +34,10 @@ namespace TestApi.Interfaces
         /// Checks whether the specified user has already passed the given test.
         /// </summary>
         /// <param name="userName">The name of the user.</param>
-        /// <param name="testName">The name of the test.</param>
+        /// <param name="testId">The name of the test.</param>
         /// <param name="cancellationToken">The token used to cancel the operation.</param>
         /// <returns>>true</c> if the user has already passed the test; otherwise, >false</c>.</returns>
-        Task<bool> UserAlreadyPassedAsync(string userName, string testName, CancellationToken cancellationToken);
+        Task<bool> UserAlreadyPassedAsync(string userName, Guid testId, CancellationToken cancellationToken);
 
     }
 }

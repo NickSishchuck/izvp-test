@@ -9,6 +9,11 @@ namespace TestApi.DTOs.Requests.TestSubmitRequestAggregate
     public class TestSubmitRequest
     {
         /// <summary>
+        /// Unique id for test
+        /// </summary>
+        public Guid TestId { get; set; }
+
+        /// <summary>
         /// The title of the test being submitted.
         /// </summary>
         public string Title { get; set; }

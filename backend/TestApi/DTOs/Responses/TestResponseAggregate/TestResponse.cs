@@ -9,6 +9,11 @@ namespace TestApi.DTOs.Responses.TestResponseAggregate
     public class TestResponse
     {
         /// <summary>
+        /// Unique id for test
+        /// </summary>
+        public Guid Id { get; set; }
+
+        /// <summary>
         /// The title of the test.
         /// </summary>
         public string Title { get; set; } = "";

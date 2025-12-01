@@ -14,6 +14,11 @@ namespace TestApi.DomainEntities
         public string UserName { get; set; }
 
         /// <summary>
+        /// Unique id for test
+        /// </summary>
+        public Guid TestId { get; set; }
+
+        /// <summary>
         /// The name of the test that was completed.
         /// </summary>
         public string TestName { get; set; }
@@ -22,6 +27,11 @@ namespace TestApi.DomainEntities
         /// The score the user achieved for this test.
         /// </summary>
         public int Score { get; set; }
+
+        /// <summary>
+        /// The score the user could achieve for this test.
+        /// </summary>
+        public int TotalScore { get; set; }
 
         /// <summary>
         /// The UTC date and time when the test was completed.

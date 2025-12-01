@@ -27,18 +27,13 @@ namespace TestApi.UseCases.Handlers
             SubmitTestCommand request,
             CancellationToken cancellationToken)
         {
-            logger.LogInformation(
-                "Start handling SubmitTestCommand for user {UserName}, title {Title}",
-                request.Test.UserName,
-                request.Test.Title);
+            logger.LogInformation("Start handling SubmitTestCommand for user {UserName}, title {Title}", request.Test.UserName, request.Test.Title);
 
             // Validate incoming DTO using FluentValidation
             var validationResult = await validator.ValidateAsync(request.Test, cancellationToken);
             if (!validationResult.IsValid)
             {
-                logger.LogWarning(
-                    "Validation failed for SubmitTestCommand. Errors: {Errors}",
-                    string.Join("; ", validationResult.Errors.Select(e => $"{e.PropertyName}: {e.ErrorMessage}")));
+                logger.LogWarning("Validation failed for SubmitTestCommand. Errors: {Errors}", string.Join("; ", validationResult.Errors.Select(e => $"{e.PropertyName}: {e.ErrorMessage}")));
 
                 return Result.Failure<TestResultResponse, ValidationResult>(validationResult);
             }
@@ -48,15 +43,12 @@ namespace TestApi.UseCases.Handlers
             // Ensure the user has not already passed this test
             bool alreadyPassed = await testRepository.UserAlreadyPassedAsync(
                 testDto.UserName,
-                testDto.Title,
+                testDto.TestId,
                 cancellationToken);
 
             if (alreadyPassed)
             {
-                logger.LogWarning(
-                    "User {UserName} has already passed test {Title}",
-                    testDto.UserName,
-                    testDto.Title);
+                logger.LogWarning("User {UserName} has already passed test {Title}", testDto.UserName, testDto.Title);
 
                 var vr = new ValidationResult(new[]
                 {
@@ -69,12 +61,7 @@ namespace TestApi.UseCases.Handlers
             // Evaluate test answers and calculate the result
             var result = await evaluationService.EvaluateAsync(testDto, cancellationToken);
 
-            logger.LogDebug(
-                "Evaluation completed. CorrectAnswers: {CorrectAnswers}, TotalQuestions: {TotalQuestions}, Score: {Score}, TotalScore: {TotalScore}",
-                result.CorrectAnswers,
-                result.TotalQuestions,
-                result.Score,
-                result.TotalScore);
+            logger.LogDebug("Evaluation completed. CorrectAnswers: {CorrectAnswers}, TotalQuestions: {TotalQuestions}, Score: {Score}, TotalScore: {TotalScore}", result.CorrectAnswers, result.TotalQuestions, result.Score, result.TotalScore);
 
             // Load existing results and append the new one
             var allResults = await testRepository.LoadResultsAsync(cancellationToken);
@@ -83,26 +70,21 @@ namespace TestApi.UseCases.Handlers
 
             var newResult = new UserTestResult
             {
+                TestId = testDto.TestId,
                 UserName = testDto.UserName,
                 TestName = testDto.Title,
                 Score = result.Score,
+                TotalScore = result.TotalScore,
                 PassedAt = DateTime.UtcNow
             };
 
-            logger.LogDebug(
-                "Appending new test result for user {UserName}, title {Title}, score {Score}",
-                newResult.UserName,
-                newResult.TestName,
-                newResult.Score);
+            logger.LogDebug("Appending new test result for user {UserName}, title {Title}, score {Score}", newResult.UserName, newResult.TestName, newResult.Score);
 
             allResults.Add(newResult);
 
             await testRepository.SaveResultsAsync(allResults, CancellationToken.None);
 
-            logger.LogInformation(
-                "SubmitTestCommand handled successfully for user {UserName}, title {Title}",
-                testDto.UserName,
-                testDto.Title);
+            logger.LogInformation("SubmitTestCommand handled successfully for user {UserName}, title {Title}", testDto.UserName, testDto.Title);
 
             return Result.Success<TestResultResponse, ValidationResult>(result);
         }

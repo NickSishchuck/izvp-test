@@ -21,6 +21,12 @@ namespace TestApi.Implementations.Repositories
                    ?? new TestEntity();
         }
 
+        public async Task SaveMainTestAsync(TestEntity test, CancellationToken cancellationToken = default)
+        {
+            var json = jsonSerializer.ToJson(test);
+            await File.WriteAllTextAsync(_mainTestPath, json, cancellationToken);
+        }
+
         public async Task<List<UserTestResult>> LoadResultsAsync(CancellationToken cancellationToken)
         {
             if (!File.Exists(_testResultsPath))
@@ -40,10 +46,10 @@ namespace TestApi.Implementations.Repositories
             await File.WriteAllTextAsync(_testResultsPath, json);
         }
 
-        public async Task<bool> UserAlreadyPassedAsync(string userName, string testName, CancellationToken cancellationToken)
+        public async Task<bool> UserAlreadyPassedAsync(string userName, Guid testId, CancellationToken cancellationToken)
         {
             var results = await LoadResultsAsync(cancellationToken);
-            return results.Any(r => r.UserName == userName && r.TestName == testName);
+            return results.Any(r => r.UserName == userName && r.TestId == testId);
         }
 
     }

@@ -15,6 +15,10 @@ namespace TestApi.Validators
                 .WithMessage("Username is required")
                 .MaximumLength(100);
 
+            RuleFor(x => x.TestId)
+                .NotNull()
+                .WithMessage("Test id required");
+
             RuleFor(x => x.Title)
                 .NotEmpty()
                 .WithMessage("Test name is required")
