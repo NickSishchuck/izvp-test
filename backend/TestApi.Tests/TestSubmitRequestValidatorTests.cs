@@ -14,6 +14,7 @@ namespace TestApi.Tests
             // Arrange
             var request = new TestSubmitRequest
             {
+                TestId = Guid.NewGuid(),
                 UserName = "test_user",
                 Title = "Тест з C# для початківців",
                 Answers = new List<AnswerDto>
@@ -36,6 +37,7 @@ namespace TestApi.Tests
         {
             var request = new TestSubmitRequest
             {
+                TestId = Guid.NewGuid(),
                 UserName = "",
                 Title = "Тест з C# для початківців",
                 Answers = new List<AnswerDto>
@@ -55,6 +57,7 @@ namespace TestApi.Tests
         {
             var request = new TestSubmitRequest
             {
+                TestId = Guid.NewGuid(),
                 UserName = "test_user",
                 Title = "Тест з C# для початківців",
                 Answers = new List<AnswerDto>()
@@ -71,6 +74,7 @@ namespace TestApi.Tests
         {
             var request = new TestSubmitRequest
             {
+                TestId = Guid.NewGuid(),
                 UserName = "test_user",
                 Title = "Тест з C# для початківців",
                 Answers = new List<AnswerDto>
