@@ -1,6 +1,6 @@
 ﻿namespace TestApi.Interfaces
 {
-    public interface IAdminAuthService
+    public interface IAuthService
     {
         FluentValidation.Results.ValidationResult Validate(string username, string password);
     }

@@ -17,7 +17,7 @@ namespace TestApi.Controllers
             CancellationToken cancellationToken)
         {
             var result = await mediator.Send(
-                new LoginCommand(request.Username, request.Password),
+                new LoginCommand(request),
                 cancellationToken);
 
             return result.IsSuccess

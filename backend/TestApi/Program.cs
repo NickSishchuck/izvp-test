@@ -1,4 +1,5 @@
 using FluentValidation;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi;
 using Serilog;
 using Swashbuckle.AspNetCore.Filters;
@@ -61,10 +62,7 @@ namespace TestApi
                 builder.Services.AddScoped<IJsonSerializer, JsonSerializer>();
                 builder.Services.AddScoped<ITestEvaluationService, TestEvaluationService>();
                 builder.Services.AddScoped<ITestRepository, TestRepository>();
-                builder.Services.AddTransient<IAdminAuthService, AdminAuthServiceImplementation>();
-                builder.Services.AddTransient<IValidator<LoginCommand>, LoginCommandValidator>();
-                builder.Services.AddTransient<IValidator<AdminLoginRequest>, AdminLoginRequestValidator>();
-
+                builder.Services.AddScoped<IAuthService, AuthService>();
                 builder.Services.AddValidatorsFromAssemblyContaining<TestSubmitRequestValidator>();
                 builder.Services.AddSwaggerExamplesFromAssemblyOf<TestSubmitRequestExample>();
 
