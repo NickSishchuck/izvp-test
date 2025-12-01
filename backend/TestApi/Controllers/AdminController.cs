@@ -1,9 +1,9 @@
-﻿using MediatR;
+﻿using FitTracker.Api.Controllers.Extensions;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Swashbuckle.AspNetCore.Filters;
-using TestApi.DTOs.Requests.TestUpdateRequestAggregate;
-using TestApi.Swagger.Examples;
+using TestApi.DTOs.Requests;
 using TestApi.UseCases.Commands;
+using TestApi.DTOs.Requests;
 
 namespace TestApi.Controllers
 {
@@ -11,14 +11,18 @@ namespace TestApi.Controllers
     [Route("api/[controller]")]
     public class AdminController(IMediator mediator) : ControllerBase
     {
-        [HttpPut("change")]
-        [SwaggerRequestExample(typeof(UpdateTestRequest), typeof(UpdateTestRequestExample))]
-        public async Task<IActionResult> ChangeTestAsync(UpdateTestRequest request, CancellationToken cancellationToken)
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(
+            [FromBody] AdminLoginRequest request,
+            CancellationToken cancellationToken)
         {
-            var command = new UpdateTestCommand(request);
-            var result = await mediator.Send(command);
+            var result = await mediator.Send(
+                new LoginCommand(request.Username, request.Password),
+                cancellationToken);
 
-            return Ok(result.Value);
+            return result.IsSuccess
+                ? Ok(result.Value)
+                : ValidationProblem(result.Error.ToModelState());
         }
     }
 }
