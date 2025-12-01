@@ -13,8 +13,8 @@ namespace TestApi.Implementations
         {
             var test = await testRepository.LoadMainTest(cancellationToken);
 
-            if (test is null || !string.Equals(request.Title, test.Title))
-                throw new InvalidOperationException("Test with this name is not found");
+            if (test is null || request.TestId != test.Id)
+                throw new InvalidOperationException("Test not found");
 
             int correctCount = 0;
             int totalScore = 0;

@@ -14,6 +14,11 @@ namespace TestApi.DomainEntities
         public string UserName { get; set; }
 
         /// <summary>
+        /// Unique id for test
+        /// </summary>
+        public Guid TestId { get; set; }
+
+        /// <summary>
         /// The name of the test that was completed.
         /// </summary>
         public string TestName { get; set; }
