@@ -39,7 +39,7 @@ namespace TestApi.Controllers
         [SwaggerRequestExample(typeof(TestSubmitRequest), typeof(TestSubmitRequestExample))]
         public async Task<IActionResult> SubmitTestAsync([FromBody] TestSubmitRequest test, CancellationToken cancellationToken)
         {
-            var command = new SubmitTestCommand(test, cancellationToken);
+            var command = new SubmitTestCommand(test);
             var result = await mediator.Send(command, cancellationToken);
 
             if (result.IsFailure)

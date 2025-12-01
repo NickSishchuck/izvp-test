@@ -9,6 +9,11 @@ namespace TestApi.DomainEntities
     public class TestEntity
     {
         /// <summary>
+        /// Unique id for test
+        /// </summary>
+        public Guid Id { get; set; }
+
+        /// <summary>
         /// Title associated with the object.
         /// </summary>
         public string Title { get; set; } = "";

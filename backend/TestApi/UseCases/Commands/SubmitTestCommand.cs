@@ -10,6 +10,5 @@ namespace TestApi.UseCases.Commands
     /// Represents a command to submit a completed test for evaluation.
     /// </summary>
     /// <param name="Test">The <see cref="TestSubmitRequest"/>.</param>
-    /// <param name="CancellationToken">The token used to cancel the operation.</param>
-    public record SubmitTestCommand(TestSubmitRequest Test, CancellationToken CancellationToken) : IRequest<Result<TestResultResponse, ValidationResult>>;
+    public record SubmitTestCommand(TestSubmitRequest Test) : IRequest<Result<TestResultResponse, ValidationResult>>;
 }
