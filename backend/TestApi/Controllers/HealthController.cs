@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using System.Diagnostics.CodeAnalysis;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using TestApi.UseCases.Queries;
 
@@ -10,6 +11,7 @@ namespace TestApi.Controllers
     /// <param name="mediator">The mediator instance used to send commands and queries.</param>
     [ApiController]
     [Route("api/[controller]")]
+    [ExcludeFromCodeCoverage]
     public class HealthController(IMediator mediator) : ControllerBase
     {
         /// <summary>

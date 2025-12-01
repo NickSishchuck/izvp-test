@@ -1,4 +1,5 @@
-﻿using CSharpFunctionalExtensions;
+﻿using System.Diagnostics.CodeAnalysis;
+using CSharpFunctionalExtensions;
 using MediatR;
 using TestApi.DTOs.Responses;
 using TestApi.UseCases.Queries;
@@ -8,6 +9,7 @@ namespace TestApi.UseCases.Handlers
     /// <summary>
     /// Handles the processing of a health check command and returns the current health status of the application.
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class GetHealthQueryHandler() : IRequestHandler<GetHealthQuery, Result<HealthStatusResponse>>
     {
         /// <summary>

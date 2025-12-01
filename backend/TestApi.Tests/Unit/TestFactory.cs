@@ -1,6 +1,6 @@
 ﻿using TestApi.DomainEntities;
 
-namespace TestApi.Tests
+namespace TestApi.Tests.Unit
 {
     /// <summary>
     /// Provides factory methods for creating <see cref="TestEntity"/> for use in testing or demonstration scenarios.

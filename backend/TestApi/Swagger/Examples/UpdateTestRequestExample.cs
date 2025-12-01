@@ -1,8 +1,10 @@
-﻿using Swashbuckle.AspNetCore.Filters;
+﻿using System.Diagnostics.CodeAnalysis;
+using Swashbuckle.AspNetCore.Filters;
 using TestApi.DomainEntities;
 
 namespace TestApi.Swagger.Examples
 {
+    [ExcludeFromCodeCoverage]
     public class UpdateTestRequestExample : IExamplesProvider<TestEntity>
     {
         public TestEntity GetExamples()

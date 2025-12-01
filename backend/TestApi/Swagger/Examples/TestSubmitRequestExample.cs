@@ -1,8 +1,10 @@
-﻿using Swashbuckle.AspNetCore.Filters;
+﻿using System.Diagnostics.CodeAnalysis;
+using Swashbuckle.AspNetCore.Filters;
 using TestApi.DTOs.Requests.TestSubmitRequestAggregate;
 
 namespace TestApi.Swagger.Examples
 {
+    [ExcludeFromCodeCoverage]
     public class TestSubmitRequestExample : IExamplesProvider<TestSubmitRequest>
     {
         public TestSubmitRequest GetExamples()

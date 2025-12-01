@@ -2,7 +2,7 @@
 using TestApi.DTOs.Requests.TestSubmitRequestAggregate;
 using TestApi.Validators;
 
-namespace TestApi.Tests
+namespace TestApi.Tests.Unit
 {
     public class TestSubmitRequestValidatorTests
     {

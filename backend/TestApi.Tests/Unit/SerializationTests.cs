@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 using FluentAssertions; // For fluent assertions in tests (human readable assertions)
 using TestApi.DomainEntities;
 
-namespace TestApi.Tests
+namespace TestApi.Tests.Unit
 {
     /// <summary>
     /// Contains unit tests that verify the correctness of JSON serialization and question structure for test entities.
