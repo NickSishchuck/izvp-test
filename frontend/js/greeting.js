@@ -21,7 +21,7 @@ async function loadTestInfo() {
   loading.style.display = "block";
 
   try {
-    const test = await getTest(); // вызов из api.js
+    const test = await API.getTest(); // вызов из api.js
     titleElement.textContent = test.title || "Назва тесту"; // если заголовок не пришёл
   } catch (error) {
     console.error("Error loading test:", error);
