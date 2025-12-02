@@ -7,6 +7,7 @@ namespace TestApi.Implementations
 {
     public class TestEvaluationService(ITestRepository testRepository) : ITestEvaluationService
     {
+        /// <inheritdoc />
         public async Task<TestResultResponse> EvaluateAsync(
             TestSubmitRequest request,
             CancellationToken cancellationToken)
@@ -81,7 +82,7 @@ namespace TestApi.Implementations
             var expected = question.CorrectTextAnswer.Trim();
             var actual = (answer.TextAnswer ?? string.Empty).Trim();
 
-            return string.Equals(expected, actual, StringComparison.OrdinalIgnoreCase);
+            return string.Equals(expected, actual, StringComparison.Ordinal);
         }
     }
 }

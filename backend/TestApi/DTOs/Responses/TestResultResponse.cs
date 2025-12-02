@@ -6,7 +6,7 @@ namespace TestApi.DTOs.Responses
     /// Represents the calculated outcome of a completed test.
     /// </summary>
     [ExcludeFromCodeCoverage]
-    public class TestResultResponse
+    public record TestResultResponse
     {
         /// <summary>
         /// The number of questions answered correctly by the user.

@@ -6,12 +6,12 @@ namespace TestApi.DomainEntities
     /// Represents the result of a single test completed by a user.
     /// </summary>
     [ExcludeFromCodeCoverage]
-    public class UserTestResult
+    public record UserTestResult
     {
         /// <summary>
         /// The name of the user who completed the test.
         /// </summary>
-        public string UserName { get; set; }
+        public required string UserName { get; set; }
 
         /// <summary>
         /// Unique id for test
@@ -21,7 +21,7 @@ namespace TestApi.DomainEntities
         /// <summary>
         /// The name of the test that was completed.
         /// </summary>
-        public string TestName { get; set; }
+        public required string TestName { get; set; }
 
         /// <summary>
         /// The score the user achieved for this test.

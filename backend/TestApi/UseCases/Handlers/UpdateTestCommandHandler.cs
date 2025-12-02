@@ -14,6 +14,8 @@ namespace TestApi.UseCases.Handlers
     {
         public async Task<Result<TestEntity>> Handle(UpdateTestCommand request, CancellationToken cancellationToken)
         {
+            logger.LogInformation("Start handling UpdateTestCommandHandler");
+
             var dto = request.Request;
 
             var test = new TestEntity()
@@ -43,6 +45,8 @@ namespace TestApi.UseCases.Handlers
             };
 
             await repository.SaveMainTestAsync(test, CancellationToken.None);
+
+            logger.LogInformation("UpdateTestCommandHandler handled successfully.");
 
             return Result.Success(test);
         }

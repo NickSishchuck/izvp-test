@@ -8,7 +8,7 @@ namespace TestApi.Interfaces
         /// Loads the main test definition used for evaluation.
         /// </summary>
         /// <param name="cancellationToken">The token used to cancel the operation.</param>
-        Task<TestEntity> LoadMainTest(CancellationToken cancellationToken);
+        Task<TestEntity> LoadMainTest(CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Rewrites main test.
@@ -36,8 +36,7 @@ namespace TestApi.Interfaces
         /// <param name="userName">The name of the user.</param>
         /// <param name="testId">The name of the test.</param>
         /// <param name="cancellationToken">The token used to cancel the operation.</param>
-        /// <returns>>true</c> if the user has already passed the test; otherwise, >false</c>.</returns>
+        /// <returns>true</c> if the user has already passed the test; otherwise, >false</c>.</returns>
         Task<bool> UserAlreadyPassedAsync(string userName, Guid testId, CancellationToken cancellationToken);
-
     }
 }

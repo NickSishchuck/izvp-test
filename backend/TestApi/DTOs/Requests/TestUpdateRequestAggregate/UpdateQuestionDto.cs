@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace TestApi.DTOs.Requests.TestUpdateRequestAggregate
 {
     [ExcludeFromCodeCoverage]
-    public class UpdateQuestionDto
+    public record UpdateQuestionDto
     {
         /// <summary>
         /// Unique identifier for the dto.

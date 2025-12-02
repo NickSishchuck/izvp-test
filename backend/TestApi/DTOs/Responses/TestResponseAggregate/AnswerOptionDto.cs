@@ -7,7 +7,7 @@ namespace TestApi.DTOs.Responses.TestResponseAggregate
     /// DTO representing an answer option.
     /// </summary>
     [ExcludeFromCodeCoverage]
-    public class AnswerOptionDto
+    public record AnswerOptionDto
     {
         /// <summary>
         /// The unique identifier for the entity.

@@ -51,7 +51,8 @@ namespace TestApi.UseCases.Handlers
             }
 
             // 3. Issue Token
-            string token = configuration["AdminSettings:Token"];
+            string token = configuration["AdminSettings:Token"]
+                ?? throw new InvalidOperationException("Admin token is not configured");
 
             logger.LogInformation("LoginCommand handled successfully. Token issued for user {Username}", adminRequest.Username);
 
