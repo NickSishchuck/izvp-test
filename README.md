@@ -1,5 +1,17 @@
 # Qizzly Test Application
 
+
+![Greetings Screen](preview/GreetScreen.png)
+
+![Question Screen](preview/Questoin1.png)
+
+![Question Screen](preview/Questoin2.png)
+
+![Result Screen](preview/ResultsScreen.png)
+
+![Admin Screen](preview/AdminScreen.png)
+
+
 ## Getting Started
 
 **First time setup?** See [PROJECT_STARTUP.md](docs/PROJECT_STARTUP.md) for:

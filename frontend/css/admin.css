@@ -1,6 +1,4 @@
-/* ============================================================================
-   Admin Panel Styles
-   ============================================================================ */
+/*   Admin Panel Styles */
 
 /* Override body overflow from main style.css */
 body {
@@ -12,6 +10,11 @@ body {
     height: auto !important;
     min-height: 100vh;
     overflow: visible !important;
+}
+
+/* Ensure blur-circle works properly with scrolling admin pages */
+.blur-circle {
+    position: fixed !important;
 }
 
 /* Admin Section Container */
@@ -26,9 +29,7 @@ body {
     padding: var(--spacing-xl);
 }
 
-/* ============================================================================
-   Login Card
-   ============================================================================ */
+/*Login Card*/
 
 .admin-card {
     width: 100%;
@@ -55,10 +56,7 @@ body {
     margin-bottom: var(--spacing-xl);
 }
 
-/* ============================================================================
-   Forms
-   ============================================================================ */
-
+/* Forms */
 .admin-form {
     display: flex;
     flex-direction: column;
@@ -121,10 +119,7 @@ select.form-input {
     padding-right: 36px;
 }
 
-/* ============================================================================
-   Editor Layout
-   ============================================================================ */
-
+/* Editor Layout */
 .admin-header {
     position: sticky;
     top: 0;
@@ -182,10 +177,7 @@ select.form-input {
     font-weight: 400;
 }
 
-/* ============================================================================
-   Questions Container
-   ============================================================================ */
-
+/* Question container */
 .questions-container {
     display: flex;
     flex-direction: column;
@@ -226,10 +218,7 @@ select.form-input {
     gap: var(--spacing-md);
 }
 
-/* ============================================================================
-   Options Container
-   ============================================================================ */
-
+/* Options container */
 .options-list {
     display: flex;
     flex-direction: column;
@@ -268,10 +257,7 @@ select.form-input {
     margin-top: 8px;
 }
 
-/* ============================================================================
-   Buttons
-   ============================================================================ */
-
+/* Buttons */
 .btn-full {
     width: 100%;
 }
@@ -309,11 +295,7 @@ select.form-input {
     border-color: rgba(34, 197, 94, 0.7);
     transform: translateY(-2px);
 }
-
-/* ============================================================================
-   Editor Actions
-   ============================================================================ */
-
+/* Editor actions */
 .editor-actions {
     display: flex;
     flex-direction: column;
@@ -332,10 +314,7 @@ select.form-input {
     font-size: var(--font-size-sm);
 }
 
-/* ============================================================================
-   Question Type Specific Styles
-   ============================================================================ */
-
+/*Question Type Specific Styles */
 .text-answer-info {
     background: rgba(155, 135, 245, 0.1);
     border: 1px solid rgba(155, 135, 245, 0.3);
@@ -346,9 +325,7 @@ select.form-input {
     margin-top: var(--spacing-sm);
 }
 
-/* ============================================================================
-   Grid Layout for Question Type and Score
-   ============================================================================ */
+/* Grid Layout for Question Type and Score */
 
 .form-row {
     display: grid;
@@ -356,10 +333,7 @@ select.form-input {
     gap: var(--spacing-md);
 }
 
-/* ============================================================================
-   Responsive Design
-   ============================================================================ */
-
+/* Responsive */
 @media (max-width: 768px) {
     .admin-section {
         padding: var(--spacing-md);

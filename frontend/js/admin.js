@@ -1,8 +1,3 @@
-/**
- * Admin Panel JavaScript
- * Handles authentication, test loading, editing, and saving
- */
-
 // Admin state
 const AdminState = {
   token: null,
