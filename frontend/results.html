@@ -4,24 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Qizzly - Результати</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="container">
-        <!-- Header with branding -->
-        <header class="header">
-            <div class="header-line"></div>
-            <h1 class="logo">Qizzly</h1>
-            <div class="header-line"></div>
-        </header>
+        <section class="background-layers" aria-hidden="true">
+            <div class="rectangle-dark"></div>
+            <div class="rectangle-pink"></div>
+        </section>
 
-        <!-- Main content area -->
+        <div class="lines" aria-hidden="true">
+            <hr class="horizontal-line left" />
+            <hr class="horizontal-line right" />
+        </div>
+
+        <img class="abstract-shape top-right" src="https://app.codigma.io/api/uploads/2025/11/30/asset-2fde187c-73b4-4ef6-b144-684c03d5d0dc.png" alt="Decorative Abstract Shape" />
+
+        <div class="blur-circle" aria-hidden="true"></div>
+
+        <h1 class="title">Qizzly</h1>
+
+        <img class="abstract-shape bottom-left" src="https://app.codigma.io/api/uploads/2025/11/30/asset-13c399e3-66a9-4398-b95d-4b4c3eb8b72f.png" alt="Decorative Abstract Shape" />
+
         <main class="results-main">
             <div class="results-content">
                 <h2 class="results-greeting" id="results-greeting">
                 </h2>
 
-                <!-- Score display -->
                 <div class="score-display">
                     <p class="score-label">your result is</p>
                     <div class="score-value" id="score-value">
@@ -33,26 +42,16 @@
 
                 <p class="result-saved">your result has been recorded</p>
 
-                <div class="decorative-graphic decorative-graphic-right">
+                <div id="error-message" class="error-message" style="display: none;"></div>
+
+                <div id="loading" class="loading" style="display: none;">
+                    Завантаження...
                 </div>
-            </div>
-
-            
-            <!-- Decorative graphic (optional) -->
-            <div class="decorative-graphic decorative-graphic-left">
-            </div>
-
-            <!-- Error message area (hidden by default) -->
-            <div id="error-message" class="error-message" style="display: none;"></div>
-
-            <!-- Loading indicator (hidden by default) -->
-            <div id="loading" class="loading" style="display: none;">
-                Завантаження...
             </div>
         </main>
     </div>
 
-    <script src="/js/api.js"></script>
-    <script src="/js/results.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/results.js"></script>
 </body>
 </html>

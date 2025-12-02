@@ -1,26 +1,19 @@
 :root {
-    /* Colors from mockup */
-    --bg-dark-start: #1a1a2e;
-    --bg-dark-end: #16213e;
+    /* Colors */
+    --bg-dark: #171717;
     --text-light: #ffffff;
     --text-muted: #b8b8d1;
-    
-    /* Accent colors - purple/lavender buttons */
     --accent-primary: #9b87f5;
     --accent-hover: #b8a9f7;
     --accent-active: #8470e8;
-    
-    /* Component colors */
     --card-bg: rgba(255, 255, 255, 0.05);
     --card-border: rgba(255, 255, 255, 0.1);
     --input-bg: rgba(255, 255, 255, 0.08);
     --input-border: rgba(255, 255, 255, 0.2);
-    
-    /* Error states */
     --error-bg: rgba(239, 68, 68, 0.1);
     --error-border: #ef4444;
     --error-text: #fca5a5;
-    
+
     /* Spacing */
     --spacing-xs: 8px;
     --spacing-sm: 16px;
@@ -28,15 +21,15 @@
     --spacing-lg: 32px;
     --spacing-xl: 48px;
     --spacing-2xl: 64px;
-    
+
     /* Border radius */
     --radius-sm: 8px;
     --radius-md: 16px;
     --radius-lg: 24px;
     --radius-full: 9999px;
-    
+
     /* Typography */
-    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Space Grotesk', sans-serif;
+    --font-family: 'Michroma', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
     --font-size-sm: 14px;
     --font-size-base: 16px;
     --font-size-lg: 18px;
@@ -44,7 +37,7 @@
     --font-size-2xl: 32px;
     --font-size-3xl: 48px;
     --font-size-4xl: 64px;
-    
+
     /* Transitions */
     --transition-fast: 150ms ease;
     --transition-base: 250ms ease;
@@ -61,119 +54,159 @@
     box-sizing: border-box;
 }
 
-html {
+html, body {
     height: 100%;
+    font-family: var(--font-family);
 }
 
 body {
-    font-family: var(--font-family);
-    font-size: var(--font-size-base);
-    line-height: 1.6;
+    background: var(--bg-dark);
     color: var(--text-light);
     min-height: 100vh;
-    
-    /* Gradient background matching the mockup */
-    background: linear-gradient(135deg, var(--bg-dark-start) 0%, var(--bg-dark-end) 100%);
+    overflow: hidden;
 }
 
 /* ============================================================================
-   Layout Components
+   Container & Layout
    ============================================================================ */
 
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: var(--spacing-md);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-/* Header with logo and lines */
-.header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--spacing-md);
-    padding: var(--spacing-lg) 0;
-}
-
-.logo {
-    font-size: var(--font-size-2xl);
-    font-weight: 600;
-    color: var(--text-light);
-    letter-spacing: 2px;
-}
-
-.header-line {
-    width: 200px;
-    height: 1px;
-    background: rgba(255, 255, 255, 0.3);
-}
-
-/* Utility class for screen readers */
-.visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    height: 100vh;
+    width: 100%;
     overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
+    position: relative;
+}
+
+.background-layers {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.rectangle-dark {
+    background-color: var(--bg-dark);
+    width: 100%;
+    height: 100%;
+}
+
+.rectangle-pink {
+    background-color: var(--accent-purple);
+    width: 100%;
+    height: 8vh;
+    position: absolute;
+    top: 0;
+    left: 25%;
+    opacity: 0.3;
 }
 
 /* ============================================================================
-   Greeting Page Styles
+   Lines
    ============================================================================ */
 
-.greeting-main {
-    flex: 1;
+.lines {
+    position: absolute;
+    top: 8%;
+    width: 100%;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5%;
+}
+
+.horizontal-line {
+    width: 40%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* ============================================================================
+   Abstract Shapes & Decorative Elements
+   ============================================================================ */
+
+.abstract-shape {
+    position: absolute;
+    z-index: 3;
+}
+
+.top-right {
+    top: 12%;
+    right: 8%;
+    transform: rotate(0deg);
+    height: 25vh;
+    width: auto;
+}
+
+.bottom-left {
+    bottom: 18%;
+    left: 8%;
+    height: 20vh;
+    width: auto;
+}
+
+.blur-circle {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 80vw;
+    height: 80vh;
+    background: radial-gradient(circle, rgba(136, 0, 255, 0.2) 0%, rgba(136, 0, 255, 0.1) 40%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(60px);
+    z-index: 0;
+}
+
+/* ============================================================================
+   Typography
+   ============================================================================ */
+
+.title {
+    position: absolute;
+    top: 3%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 3rem;
+    color: white;
+    z-index: 3;
+    letter-spacing: 2px;
+}
+
+.subtitle {
+    position: absolute;
+    top: 28%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-size: 3.5rem;
+    color: white;
+    width: 90%;
+    z-index: 2;
+    line-height: 1.3;
+    font-weight: 300;
+}
+
+/* ============================================================================
+   Button Container & Form Elements
+   ============================================================================ */
+
+.button-container {
+    position: absolute;
+    bottom: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: var(--spacing-xl);
-    padding: var(--spacing-2xl) 0;
-    position: relative;
+    gap: var(--spacing-md);
+    width: 90%;
+    max-width: 600px;
 }
 
-.greeting-content {
-    text-align: center;
-    position: relative;
-}
-
-.greeting-title {
-    font-size: var(--font-size-3xl);
-    font-weight: 300;
-    line-height: 1.2;
-    text-transform: lowercase;
-    color: var(--text-light);
-}
-
-/* Decorative graphics (3D knot elements) */
-.decorative-graphic {
-    position: absolute;
-    width: 200px;
-    height: 200px;
-    opacity: 0.8;
-}
-
-.decorative-graphic-left {
-    bottom: 0;
-    left: -100px;
-}
-
-.decorative-graphic-right {
-    top: -50px;
-    right: -100px;
-}
-
-/* Name input section */
 .name-input-section {
     width: 100%;
-    max-width: 400px;
 }
 
 .name-input {
@@ -181,10 +214,12 @@ body {
     padding: var(--spacing-sm) var(--spacing-md);
     background: var(--input-bg);
     border: 1px solid var(--input-border);
-    border-radius: var(--radius-md);
+    border-radius: 50px;
     color: var(--text-light);
     font-size: var(--font-size-base);
+    font-family: var(--font-family);
     transition: all var(--transition-base);
+    text-align: center;
 }
 
 .name-input::placeholder {
@@ -198,286 +233,48 @@ body {
 }
 
 /* ============================================================================
-   Results Page Styles
-   ============================================================================ */
-
-.results-main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: var(--spacing-lg);
-    padding: var(--spacing-2xl) 0;
-    position: relative;
-}
-
-.results-content {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--spacing-md);
-}
-
-.results-greeting {
-    font-size: var(--font-size-2xl);
-    font-weight: 700;
-    text-transform: uppercase;
-    color: var(--text-light);
-    letter-spacing: 1px;
-}
-
-.score-display {
-    margin: var(--spacing-lg) 0;
-}
-
-.score-label {
-    font-size: var(--font-size-base);
-    color: var(--text-muted);
-    text-transform: lowercase;
-    margin-bottom: var(--spacing-sm);
-}
-
-.score-value {
-    font-size: var(--font-size-4xl);
-    font-weight: 700;
-    color: var(--text-light);
-    line-height: 1;
-}
-
-.stats-details {
-    color: var(--text-muted);
-    font-size: var(--font-size-base);
-}
-
-.stats-details p {
-    margin: var(--spacing-xs) 0;
-}
-
-.result-saved {
-    color: var(--text-muted);
-    font-size: var(--font-size-base);
-    text-transform: lowercase;
-    margin-top: var(--spacing-md);
-}
-
-.results-actions {
-    margin-top: var(--spacing-lg);
-}
-
-/* ============================================================================
-   Test Page Styles
-   ============================================================================ */
-
-.test-main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-lg);
-    padding: var(--spacing-lg) 0;
-    max-width: 800px;
-    margin: 0 auto;
-    width: 100%;
-}
-
-/* Progress indicator */
-.test-progress {
-    text-align: center;
-}
-
-.progress-bar {
-    width: 100%;
-    height: 8px;
-    background: var(--card-bg);
-    border-radius: var(--radius-full);
-    overflow: hidden;
-    margin-bottom: var(--spacing-sm);
-}
-
-.progress-fill {
-    height: 100%;
-    background: var(--accent-primary);
-    border-radius: var(--radius-full);
-    transition: width var(--transition-base);
-}
-
-.progress-text {
-    color: var(--text-muted);
-    font-size: var(--font-size-sm);
-    text-transform: lowercase;
-}
-
-/* Question card */
-.question-card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: var(--radius-lg);
-    padding: var(--spacing-xl);
-    backdrop-filter: blur(10px);
-}
-
-.question-header {
-    display: flex;
-    gap: var(--spacing-sm);
-    margin-bottom: var(--spacing-lg);
-}
-
-.question-number {
-    font-size: var(--font-size-xl);
-    font-weight: 600;
-    color: var(--accent-primary);
-    flex-shrink: 0;
-}
-
-.question-text {
-    font-size: var(--font-size-lg);
-    font-weight: 400;
-    color: var(--text-light);
-    line-height: 1.5;
-}
-
-/* Question options */
-.question-options {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-sm);
-}
-
-.option-item {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-sm);
-    padding: var(--spacing-sm) var(--spacing-md);
-    background: var(--input-bg);
-    border: 1px solid var(--input-border);
-    border-radius: var(--radius-md);
-    cursor: pointer;
-    transition: all var(--transition-base);
-}
-
-.option-item:hover {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: var(--accent-primary);
-}
-
-.option-input {
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-    accent-color: var(--accent-primary);
-}
-
-.option-input[type="radio"],
-.option-input[type="checkbox"] {
-    flex-shrink: 0;
-}
-
-.option-label {
-    flex: 1;
-    cursor: pointer;
-    color: var(--text-light);
-    font-size: var(--font-size-base);
-    user-select: none;
-}
-
-/* Text input for open questions */
-.text-answer-input {
-    width: 100%;
-    padding: var(--spacing-md);
-    background: var(--input-bg);
-    border: 1px solid var(--input-border);
-    border-radius: var(--radius-md);
-    color: var(--text-light);
-    font-size: var(--font-size-base);
-    font-family: var(--font-family);
-    resize: vertical;
-    min-height: 120px;
-    transition: all var(--transition-base);
-}
-
-.text-answer-input::placeholder {
-    color: var(--text-muted);
-}
-
-.text-answer-input:focus {
-    outline: none;
-    border-color: var(--accent-primary);
-    background: rgba(255, 255, 255, 0.1);
-}
-
-/* Test navigation */
-.test-navigation {
-    display: flex;
-    justify-content: space-between;
-    gap: var(--spacing-md);
-    margin-top: var(--spacing-md);
-}
-
-/* ============================================================================
    Button Styles
    ============================================================================ */
 
-.btn {
-    /* Base button styles */
-    padding: var(--spacing-sm) var(--spacing-xl);
-    border: none;
-    border-radius: var(--radius-full);
-    font-size: var(--font-size-base);
-    font-weight: 500;
+.button {
+    width: 50vw;
+    height: 8vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
+    background: linear-gradient(135deg, rgba(155, 135, 245, 0.5), rgba(155, 135, 245, 0.3));
+    border: 1px solid rgba(155, 135, 245, 0.6);
+    border-radius: 50px;
     transition: all var(--transition-base);
+    backdrop-filter: blur(10px);
+}
+
+.button:hover {
+    background: linear-gradient(135deg, rgba(155, 135, 245, 0.7), rgba(155, 135, 245, 0.5));
+    border-color: rgba(155, 135, 245, 0.8);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(155, 135, 245, 0.4);
+}
+
+.button:active {
+    transform: translateY(0);
+}
+
+.button-text {
+    position: relative;
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+    font-weight: 400;
     text-transform: capitalize;
-}
-
-.btn-primary {
-    background: var(--accent-primary);
-    color: var(--text-light);
-}
-
-.btn-primary:hover {
-    background: var(--accent-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(155, 135, 245, 0.3);
-}
-
-.btn-primary:active {
-    background: var(--accent-active);
-    transform: translateY(0);
-}
-
-.btn-secondary {
-    background: transparent;
-    color: var(--text-light);
-    border: 1px solid var(--input-border);
-}
-
-.btn-secondary:hover {
-    background: var(--input-bg);
-    border-color: var(--accent-primary);
-    transform: translateY(-2px);
-}
-
-.btn-secondary:active {
-    background: rgba(255, 255, 255, 0.05);
-    transform: translateY(0);
-}
-
-.btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+    letter-spacing: 1px;
 }
 
 /* ============================================================================
-   State Components
+   Error & Loading States
    ============================================================================ */
-
-.loading {
-    text-align: center;
-    padding: var(--spacing-xl);
-    color: var(--text-muted);
-    font-size: var(--font-size-lg);
-}
 
 .error-message {
     background: var(--error-bg);
@@ -485,63 +282,228 @@ body {
     color: var(--error-text);
     padding: var(--spacing-sm) var(--spacing-md);
     border-radius: var(--radius-sm);
-    margin-top: var(--spacing-md);
-    max-width: 400px;
     text-align: center;
+    font-size: var(--font-size-sm);
+    max-width: 400px;
+}
+
+.loading {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: var(--font-size-base);
+}
+
+/* ============================================================================
+   Utility Classes
+   ============================================================================ */
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 /* ============================================================================
    Responsive Design
    ============================================================================ */
 
+@media (min-width: 768px) {
+    .rectangle-pink {
+        height: 6vh;
+        left: 30%;
+    }
+
+    .lines {
+        padding: 0 10%;
+    }
+
+    .horizontal-line {
+        width: 35%;
+    }
+
+    .top-right, .bottom-left {
+        height: 22vh;
+    }
+
+    .button {
+        width: 40vw;
+        height: 8vh;
+    }
+
+    .subtitle {
+        font-size: 3.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .rectangle-pink {
+        height: 4vh;
+        left: 35%;
+    }
+
+    .lines {
+        top: 10%;
+    }
+
+    .horizontal-line {
+        width: 30%;
+    }
+
+    .top-right, .bottom-left {
+        height: 24vh;
+    }
+
+    .title {
+        font-size: 4rem;
+    }
+
+    .subtitle {
+        font-size: 4rem;
+        top: 30%;
+    }
+
+    .button {
+        width: 30vw;
+        height: 8vh;
+    }
+
+    .button-text {
+        font-size: 1.5rem;
+    }
+}
+
 @media (max-width: 768px) {
-    .header-line {
-        width: 80px;
+    .subtitle {
+        font-size: 2.5rem;
+        top: 30%;
     }
-    
-    .logo {
-        font-size: var(--font-size-xl);
+
+    .button {
+        width: 70vw;
+        height: 10vh;
     }
-    
-    .greeting-title {
-        font-size: var(--font-size-2xl);
+
+    .button-text {
+        font-size: 1.2rem;
     }
-    
-    .score-value {
-        font-size: var(--font-size-3xl);
+
+    .top-right {
+        height: 15vh;
+        top: 15%;
+        right: 5%;
     }
-    
-    .decorative-graphic {
-        display: none; /* Hide on mobile for simplicity */
+
+    .bottom-left {
+        height: 15vh;
+        bottom: 20%;
+        left: 5%;
     }
-    
-    .question-card {
-        padding: var(--spacing-md);
+
+    .title {
+        font-size: 2.5rem;
     }
-    
-    .question-text {
-        font-size: var(--font-size-base);
-    }
-    
-    .test-navigation {
-        flex-direction: column;
+
+    .button-container {
+        bottom: 20%;
     }
 }
 
 @media (max-width: 480px) {
-    .container {
-        padding: var(--spacing-sm);
+    .title {
+        font-size: 2rem;
+        top: 6%;
     }
-    
-    .greeting-title {
-        font-size: var(--font-size-xl);
+
+    .subtitle {
+        font-size: 2rem;
+        top: 25%;
+        width: 90%;
     }
-    
-    .results-greeting {
-        font-size: var(--font-size-lg);
+
+    .button-container {
+        bottom: 15%;
     }
-    
-    .question-number {
-        font-size: var(--font-size-lg);
+
+    .button {
+        width: 85vw;
+        height: 12vh;
     }
+
+    .button-text {
+        font-size: 1rem;
+    }
+
+    .blur-circle {
+        width: 90vw;
+        height: 50vh;
+        filter: blur(40px);
+    }
+}
+.results-main {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.results-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-lg);
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
+    z-index: 3;
+}
+
+.results-greeting {
+    font-size: var(--font-size-3xl);
+    color: var(--text-light);
+    line-height: 1.3;
+    font-weight: 300;
+}
+
+.score-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.score-label {
+    font-size: var(--font-size-lg);
+    color: var(--text-muted);
+    text-transform: lowercase;
+    letter-spacing: 1px;
+}
+
+.score-value {
+    font-size: var(--font-size-4xl);
+    color: var(--accent-primary);
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.stats-details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    font-size: var(--font-size-base);
+    color: var(--text-muted);
+}
+
+.result-saved {
+    font-size: var(--font-size-sm);
+    color: var(--text-muted);
+    text-transform: lowercase;
+    letter-spacing: 1px;
 }

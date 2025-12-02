@@ -4,63 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Qizzly - Тестування</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="container">
-        <!-- Header with branding -->
-        <header class="header">
-            <div class="header-line"></div>
-            <h1 class="logo">Qizzly</h1>
-            <div class="header-line"></div>
-        </header>
+        <section class="background-layers" aria-hidden="true">
+            <div class="rectangle-dark"></div>
+            <div class="rectangle-pink"></div>
+        </section>
 
-        <!-- Main content area -->
-        <main class="greeting-main">
-            <!-- Test title will be loaded here by JavaScript -->
-            <div class="greeting-content">
-                <h2 class="greeting-title">
-                    take the <span id="test-title-dynamic">oop</span><br>
-                    knowledge test
-                </h2>
+        <div class="lines" aria-hidden="true">
+            <hr class="horizontal-line left" />
+            <hr class="horizontal-line right" />
+        </div>
 
-                <div class="decorative-graphic decorative-graphic-right">
-                </div>
-            </div>
+      <img class="abstract-shape top-right" src="https://app.codigma.io/api/uploads/2025/11/30/asset-2fde187c-73b4-4ef6-b144-684c03d5d0dc.png" alt="Decorative Abstract Shape" />
 
-            <!-- User name input section -->
+        <div class="blur-circle" aria-hidden="true"></div>
+
+        <h1 class="title">Qizzly</h1>
+
+        <img class="abstract-shape bottom-left" src="https://app.codigma.io/api/uploads/2025/11/30/asset-13c399e3-66a9-4398-b95d-4b4c3eb8b72f.png" alt="Decorative Abstract Shape" />
+
+        <h2 class="subtitle">Take the <span id="test-title-dynamic">OOP</span> knowledge test</h2>
+
+        <div class="button-container">
             <div class="name-input-section">
                 <label for="user-name" class="visually-hidden">Ваше ім'я</label>
                 <input 
                     type="text" 
                     id="user-name" 
                     class="name-input" 
-                    placeholder="Введіть ваше ім'я"
-                    required
+                    placeholder="Enter your name" 
+                    required 
                     autocomplete="name"
-                >
+                />
             </div>
 
-            <!-- Start button -->
-            <button id="start-button" class="btn btn-primary">
-                Lets start!
+            <button id="start-button" class="button" aria-label="Start Test Button">
+                <span class="button-text">Let's Start!</span>
             </button>
 
-            <!-- Decorative graphic (optional) -->
-            <div class="decorative-graphic decorative-graphic-left">
-            </div>
-
-            <!-- Error message area (hidden by default) -->
             <div id="error-message" class="error-message" style="display: none;"></div>
-
-            <!-- Loading indicator (hidden by default) -->
-            <div id="loading" class="loading" style="display: none;">
-                Завантаження...
-            </div>
-        </main>
+            <div id="loading" class="loading" style="display: none;">Завантаження...</div>
+        </div>
     </div>
 
-    <script src="/js/api.js"></script>
-    <script src="/js/greeting.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/greeting.js"></script>
 </body>
 </html>

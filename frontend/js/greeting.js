@@ -16,10 +16,13 @@
 // TODO: Fetch test from API, update #test-title-dynamic, store test data
 async function loadTestInfo() {
   const loading = document.getElementById("loading");
+  const titleElement = document.getElementById("test-title-dynamic");
+
   loading.style.display = "block";
 
   try {
-    // Your implementation here
+    const test = await API.getTest(); // вызов из api.js
+    titleElement.textContent = test.title || "Назва тесту"; // если заголовок не пришёл
   } catch (error) {
     console.error("Error loading test:", error);
     showError("Не вдалося завантажити тест. Спробуйте пізніше.");
@@ -35,12 +38,14 @@ function handleStartTest() {
 
 // TODO: Display error message in #error-message element
 function showError(message) {
-  // Your implementation here
+  const errorElement = document.getElementById("error-message");
+  errorElement.textContent = message;
+  errorElement.style.display = "block";
 }
 
-// TODO: Initialize page - load test info and setup event listeners
 function init() {
-  // Your implementation here
+  loadTestInfo(); // загружаем инфо о тесте
+  document.getElementById("start-button").addEventListener("click", handleStartTest);
 }
 
 document.addEventListener("DOMContentLoaded", init);
