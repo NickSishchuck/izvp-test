@@ -3,12 +3,11 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using TestApi.DTOs.Requests;
 using TestApi.UseCases.Commands;
-using TestApi.DTOs.Requests;
 using Swashbuckle.AspNetCore.Filters;
 using TestApi.DTOs.Requests.TestUpdateRequestAggregate;
 using TestApi.Swagger.Examples;
-using TestApi.UseCases.Commands;
-using TestApi.DTOs.Requests;
+using TestApi.CustomAttributes;
+
 
 namespace TestApi.Controllers
 {
@@ -31,6 +30,7 @@ namespace TestApi.Controllers
         }
 
         [HttpPut("change")]
+        [AdminAuthorize]
         [SwaggerRequestExample(typeof(UpdateTestRequest), typeof(UpdateTestRequestExample))]
         public async Task<IActionResult> ChangeTestAsync(UpdateTestRequest request, CancellationToken cancellationToken)
         {

@@ -7,6 +7,9 @@ using TestApi.UseCases.Commands;
 
 namespace TestApi.UseCases.Handlers
 {
+    /// <summary>
+    /// Handles the <see cref="UpdateTestCommand"/> to update the main test with new questions and options.
+    /// </summary>
     public class UpdateTestCommandHandler(ITestRepository repository, ILogger<UpdateTestCommandHandler> logger) : IRequestHandler<UpdateTestCommand, Result<TestEntity>>
     {
         public async Task<Result<TestEntity>> Handle(UpdateTestCommand request, CancellationToken cancellationToken)

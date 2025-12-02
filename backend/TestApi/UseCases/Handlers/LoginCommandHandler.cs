@@ -12,14 +12,13 @@ using TestApi.UseCases.Commands;
 namespace TestApi.UseCases.Handlers
 {
     /// <summary>
-    /// Handles the admin login command by validating input and verifying credentials.
+    /// Handles the <see cref="LoginCommand"/> by validating input and verifying credentials.
     /// </summary>
     public class LoginCommandHandler(
-        // Валідатор тепер працює з AdminLoginRequest
         IValidator<AdminLoginRequest> validator,
-        // Інтерфейс сервісу аутентифікації
         IAuthService authService,
-        ILogger<LoginCommandHandler> logger)
+        ILogger<LoginCommandHandler> logger,
+        IConfiguration configuration)
         : IRequestHandler<LoginCommand, Result<AdminLoginResponse, ValidationResult>>
     {
         /// <summary>
@@ -29,13 +28,10 @@ namespace TestApi.UseCases.Handlers
             LoginCommand request,
             CancellationToken cancellationToken)
         {
-            // Отримуємо DTO з команди (припускаємо, що LoginCommand має властивість Request типу AdminLoginRequest)
             var adminRequest = request.Request;
 
             logger.LogInformation("Start handling LoginCommand for user {Username}", adminRequest.Username);
 
-            // 1. Validate incoming DTO using FluentValidation
-            // Валідуємо AdminLoginRequest
             var validation = await validator.ValidateAsync(adminRequest, cancellationToken);
 
             if (!validation.IsValid)
@@ -55,7 +51,7 @@ namespace TestApi.UseCases.Handlers
             }
 
             // 3. Issue Token
-            string token = "generated-admin-jwt-token";
+            string token = configuration["AdminSettings:Token"];
 
             logger.LogInformation("LoginCommand handled successfully. Token issued for user {Username}", adminRequest.Username);
 

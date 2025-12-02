@@ -8,6 +8,9 @@ using TestApi.UseCases.Queries;
 
 namespace TestApi.UseCases.Handlers
 {
+    /// <summary>
+    /// Handles the <see cref="GetTestQuery"/> to retrieve the main test with all its questions.
+    /// </summary>
     public class GetTestQueryHandler(
         ILogger<GetTestQueryHandler> logger,
         ITestRepository repository,
