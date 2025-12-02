@@ -1,0 +1,395 @@
+/*   Admin Panel Styles */
+
+/* Override body overflow from main style.css */
+body {
+    overflow: auto !important;
+}
+
+/* Override container constraints for admin pages */
+.container {
+    height: auto !important;
+    min-height: 100vh;
+    overflow: visible !important;
+}
+
+/* Ensure blur-circle works properly with scrolling admin pages */
+.blur-circle {
+    position: fixed !important;
+}
+
+/* Admin Section Container */
+.admin-section {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: var(--spacing-xl);
+}
+
+/*Login Card*/
+
+.admin-card {
+    width: 100%;
+    max-width: 500px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-2xl);
+    backdrop-filter: blur(10px);
+}
+
+.admin-title {
+    font-size: var(--font-size-3xl);
+    color: var(--text-light);
+    text-align: center;
+    margin-bottom: var(--spacing-sm);
+    letter-spacing: 2px;
+}
+
+.admin-subtitle {
+    font-size: var(--font-size-base);
+    color: var(--text-muted);
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+/* Forms */
+.admin-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.form-label {
+    color: var(--text-muted);
+    font-size: var(--font-size-sm);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.form-input {
+    width: 100%;
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: var(--radius-sm);
+    color: var(--text-light);
+    font-size: var(--font-size-base);
+    font-family: var(--font-family);
+    transition: all var(--transition-base);
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.form-input:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.form-input::placeholder {
+    color: var(--text-muted);
+}
+
+/* Textarea variant */
+textarea.form-input {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Select variant */
+select.form-input {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23b8b8d1' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
+}
+
+/* Editor Layout */
+.admin-header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background: rgba(23, 23, 23, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--card-border);
+    z-index: 10;
+    padding: var(--spacing-md) 0;
+}
+
+.admin-header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-xl);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-logo {
+    font-size: var(--font-size-xl);
+    color: var(--text-light);
+    letter-spacing: 2px;
+}
+
+.editor-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+}
+
+.editor-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    backdrop-filter: blur(10px);
+}
+
+.editor-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.editor-section-title {
+    font-size: var(--font-size-xl);
+    color: var(--text-light);
+    font-weight: 400;
+}
+
+/* Question container */
+.questions-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.question-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+}
+
+.question-header-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.question-number-badge {
+    background: var(--accent-primary);
+    color: var(--text-light);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-sm);
+    font-weight: bold;
+}
+
+.question-controls {
+    display: flex;
+    gap: var(--spacing-xs);
+}
+
+.question-fields {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+/* Options container */
+.options-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-sm);
+}
+
+.option-item-editor {
+    display: flex;
+    gap: var(--spacing-sm);
+    align-items: flex-start;
+}
+
+.option-checkbox {
+    margin-top: 12px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: var(--accent-primary);
+    flex-shrink: 0;
+}
+
+.option-input-wrapper {
+    flex: 1;
+    display: flex;
+    gap: var(--spacing-xs);
+}
+
+.option-input {
+    flex: 1;
+}
+
+.option-controls {
+    display: flex;
+    gap: var(--spacing-xs);
+    margin-top: 8px;
+}
+
+/* Buttons */
+.btn-full {
+    width: 100%;
+}
+
+.btn-large {
+    padding: var(--spacing-md) var(--spacing-2xl);
+    font-size: var(--font-size-lg);
+}
+
+.btn-sm {
+    padding: var(--spacing-xs) var(--spacing-md);
+    font-size: var(--font-size-sm);
+}
+
+.btn-danger {
+    background: rgba(239, 68, 68, 0.2);
+    border: 1px solid rgba(239, 68, 68, 0.5);
+    color: var(--error-text);
+}
+
+.btn-danger:hover:not(:disabled) {
+    background: rgba(239, 68, 68, 0.3);
+    border-color: rgba(239, 68, 68, 0.7);
+    transform: translateY(-2px);
+}
+
+.btn-success {
+    background: rgba(34, 197, 94, 0.2);
+    border: 1px solid rgba(34, 197, 94, 0.5);
+    color: #86efac;
+}
+
+.btn-success:hover:not(:disabled) {
+    background: rgba(34, 197, 94, 0.3);
+    border-color: rgba(34, 197, 94, 0.7);
+    transform: translateY(-2px);
+}
+/* Editor actions */
+.editor-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-xl) 0;
+}
+
+.success-message {
+    background: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.5);
+    color: #86efac;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-sm);
+    text-align: center;
+    font-size: var(--font-size-sm);
+}
+
+/*Question Type Specific Styles */
+.text-answer-info {
+    background: rgba(155, 135, 245, 0.1);
+    border: 1px solid rgba(155, 135, 245, 0.3);
+    border-radius: var(--radius-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    color: var(--text-muted);
+    font-size: var(--font-size-sm);
+    margin-top: var(--spacing-sm);
+}
+
+/* Grid Layout for Question Type and Score */
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .admin-section {
+        padding: var(--spacing-md);
+    }
+
+    .admin-card {
+        padding: var(--spacing-xl);
+    }
+
+    .editor-container {
+        padding: var(--spacing-md);
+    }
+
+    .editor-card {
+        padding: var(--spacing-md);
+    }
+
+    .admin-header-content {
+        padding: 0 var(--spacing-md);
+    }
+
+    .editor-section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-sm);
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .option-item-editor {
+        flex-wrap: wrap;
+    }
+
+    .option-controls {
+        width: 100%;
+    }
+
+    .admin-title {
+        font-size: var(--font-size-2xl);
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-title {
+        font-size: var(--font-size-xl);
+    }
+
+    .admin-logo {
+        font-size: var(--font-size-lg);
+    }
+
+    .question-header-controls {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-sm);
+    }
+}

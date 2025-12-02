@@ -32,6 +32,7 @@ frontend   | serving on port 80
 
 ### 4. Access Application
 - **Frontend:** http://localhost:8080
+- **Frontend admin:** http://localhost:8080/admin.html
 - **Backend API:** http://localhost:5000/api/
 - **Swagger:** http://localhost:5000
 

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qizzly - Admin Panel</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Background layers -->
+        <section class="background-layers" aria-hidden="true">
+            <div class="rectangle-dark"></div>
+            <div class="rectangle-pink"></div>
+        </section>
+
+        <div class="blur-circle" aria-hidden="true"></div>
+
+        <!-- Login Section (shown initially) -->
+        <div id="login-section" class="admin-section">
+            <div class="admin-card">
+                <h1 class="admin-title">Qizzly Admin</h1>
+                <p class="admin-subtitle">Login to manage tests</p>
+
+                <form id="login-form" class="admin-form">
+                    <div class="form-group">
+                        <label for="username" class="form-label">Username</label>
+                        <input 
+                            type="text" 
+                            id="username" 
+                            class="form-input" 
+                            placeholder="Enter username" 
+                            required 
+                            autocomplete="username"
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" class="form-label">Password</label>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            class="form-input" 
+                            placeholder="Enter password" 
+                            required 
+                            autocomplete="current-password"
+                        />
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-full">
+                        Login
+                    </button>
+
+                    <div id="login-error" class="error-message" style="display: none;"></div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Editor Section (shown after login) -->
+        <div id="editor-section" class="admin-section" style="display: none;">
+            <div class="admin-header">
+                <div class="admin-header-content">
+                    <h1 class="admin-logo">Qizzly Admin</h1>
+                    <button id="logout-button" class="btn btn-secondary btn-sm">
+                        Logout
+                    </button>
+                </div>
+            </div>
+
+            <div class="editor-container">
+                <!-- Test Info -->
+                <div class="editor-card">
+                    <h2 class="editor-section-title">Test Information</h2>
+                    
+                    <div class="form-group">
+                        <label for="test-title" class="form-label">Test Title</label>
+                        <input 
+                            type="text" 
+                            id="test-title" 
+                            class="form-input" 
+                            placeholder="Enter test title" 
+                            required
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Test ID</label>
+                        <input 
+                            type="text" 
+                            id="test-id" 
+                            class="form-input" 
+                            readonly
+                            disabled
+                        />
+                    </div>
+                </div>
+
+                <!-- Questions -->
+                <div class="editor-card">
+                    <div class="editor-section-header">
+                        <h2 class="editor-section-title">Questions</h2>
+                        <button id="add-question-button" class="btn btn-primary btn-sm">
+                            + Add Question
+                        </button>
+                    </div>
+
+                    <div id="questions-container" class="questions-container">
+                        <!-- Questions will be dynamically inserted here -->
+                    </div>
+                </div>
+
+                <!-- Save Button -->
+                <div class="editor-actions">
+                    <button id="save-test-button" class="btn btn-primary btn-large">
+                        Save Test
+                    </button>
+                    <div id="save-message" class="success-message" style="display: none;">
+                        Test saved successfully!
+                    </div>
+                    <div id="save-error" class="error-message" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="loading" class="loading" style="display: none;">Loading...</div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

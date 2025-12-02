@@ -1,4 +1,10 @@
 # Qizzly Test Application
+|  |  |
+|------------------|-------------------|
+| ![Greetings Screen](preview/GreetScreen.png) | ![Question Screen](preview/Question1.png) |
+| ![Question Screen](preview/Question2.png) | ![Result Screen](preview/ResultsScreen.png) |
+
+![Admin Screen](preview/AdminScreen.png)
 
 ## Getting Started
 

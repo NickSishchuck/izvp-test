@@ -20,7 +20,8 @@ WORKDIR /app
 
 COPY --from=publish /app/publish .
 
-COPY TestApi/TestJson/MainTest/test.json Test_Json/MainTest/
+COPY TestApi/TestJson/MainTest/test.json TestJson/MainTest/
+COPY TestApi/TestJson/UserTestsResults/testResults.json TestJson/UserTestResults/
 
 EXPOSE 5000
 

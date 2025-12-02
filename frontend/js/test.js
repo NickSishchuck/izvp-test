@@ -163,7 +163,7 @@ function renderTextInput(question, container) {
   const textInput = document.createElement("textarea");
   textInput.id = `text-answer-${question.id}`;
   textInput.className = "text-answer-input";
-  textInput.placeholder = "Введіть вашу відповідь...";
+  textInput.placeholder = "Ваша відповідь...";
   textInput.rows = 4;
 
   container.appendChild(textInput);
@@ -178,7 +178,7 @@ function updateProgress(current, total) {
 
   const percentage = (current / total) * 100;
   progressFill.style.width = `${percentage}%`;
-  progressText.textContent = `Question ${current} of ${total}`;
+  progressText.textContent = `Питання ${current} з ${total}`;
 }
 
 /**
@@ -275,20 +275,20 @@ function validateCurrentAnswer() {
   const answer = TestState.userAnswers[question.id];
 
   if (answer === null || (Array.isArray(answer) && answer.length === 0)) {
-    showError("Будь ласка, дайте відповідь на це питання");
+    showError("Це питання вимагає відповіді");
     return false;
   }
 
   return true;
 }
 
+/**
+ * Handle previous button click
+ */
 function handlePrevious() {
   saveCurrentAnswer();
-
   TestState.currentQuestionIndex--;
-
   hideError();
-
   renderQuestion(TestState.currentQuestionIndex);
 }
 
@@ -315,9 +315,9 @@ function handleNext() {
 }
 
 /**
- * Handle submit button click
+ * Handle submit button click - submit to backend
  */
-function handleSubmit() {
+async function handleSubmit() {
   // Save current answer
   saveCurrentAnswer();
 
@@ -326,85 +326,83 @@ function handleSubmit() {
     return;
   }
 
-  // Calculate score
-  const result = calculateScore();
+  // Show loading
+  const loading = document.getElementById("loading");
+  const submitButton = document.getElementById("submit-button");
 
-  // Store result in sessionStorage
-  API.storeTestResult(result);
+  loading.style.display = "block";
+  submitButton.disabled = true;
 
-  // Navigate to results page
-  window.location.href = "results.html";
+  try {
+    // Format answers for backend API
+    const formattedAnswers = formatAnswersForBackend();
+
+    // Submit to backend
+    const testSubmission = {
+      testId: TestState.testData.id,
+      userName: TestState.userName,
+      title: TestState.testData.title,
+      answers: formattedAnswers,
+    };
+
+    const result = await API.submitTest(testSubmission);
+
+    // Store result from backend
+    API.storeTestResult(result);
+
+    // Navigate to results page
+    window.location.href = "results.html";
+  } catch (error) {
+    console.error("Error submitting test:", error);
+    showError("Помилка при відправці тесту. Будь ласка спробуйте ще раз.");
+    loading.style.display = "none";
+    submitButton.disabled = false;
+  }
 }
 
 /**
- * Calculate the test score
- * @returns {Object} Result object with score and statistics
+ * Format user answers to match backend DTO structure
+ * @returns {Array} Formatted answers array
  */
-function calculateScore() {
-  let totalScore = 0;
-  let earnedScore = 0;
-  let correctAnswers = 0;
-  const totalQuestions = TestState.testData.questions.length;
+function formatAnswersForBackend() {
+  const answers = [];
 
   TestState.testData.questions.forEach((question) => {
-    totalScore += question.score;
     const userAnswer = TestState.userAnswers[question.id];
 
-    let isCorrect = false;
+    let answerDto = {
+      id: question.id,
+      selectedOptionIds: [],
+      textAnswer: null,
+    };
 
     switch (question.type) {
       case "SingleChoice":
-        const correctOption = question.options.find((opt) => opt.isCorrect);
-        if (correctOption && userAnswer === correctOption.id) {
-          isCorrect = true;
-          earnedScore += question.score;
+        if (userAnswer !== null) {
+          answerDto.selectedOptionIds = [userAnswer];
         }
         break;
 
       case "MultipleChoice":
-        const correctOptionIds = question.options
-          .filter((opt) => opt.isCorrect)
-          .map((opt) => opt.id)
-          .sort();
-
-        const userAnswerSorted = Array.isArray(userAnswer)
-          ? [...userAnswer].sort()
-          : [];
-
-        if (
-          JSON.stringify(correctOptionIds) === JSON.stringify(userAnswerSorted)
-        ) {
-          isCorrect = true;
-          earnedScore += question.score;
+        if (userAnswer !== null && Array.isArray(userAnswer)) {
+          answerDto.selectedOptionIds = userAnswer;
         }
         break;
 
       case "Text":
-        // Case-insensitive comparison, trimmed
-        const correctAnswer = question.correctTextAnswer?.toLowerCase().trim();
-        const userTextAnswer = userAnswer?.toLowerCase().trim();
-
-        if (correctAnswer && userTextAnswer === correctAnswer) {
-          isCorrect = true;
-          earnedScore += question.score;
-        }
+        answerDto.textAnswer = userAnswer || "";
         break;
     }
 
-    if (isCorrect) {
-      correctAnswers++;
-    }
+    answers.push(answerDto);
   });
 
-  return {
-    name: TestState.userName,
-    score: earnedScore,
-    totalScore: totalScore,
-    correctAnswers: correctAnswers,
-    totalQuestions: totalQuestions,
-  };
+  return answers;
 }
 
+/**
+ * Show error message
+ */
 function showError(message) {
   const errorElement = document.getElementById("error-message");
   errorElement.textContent = message;
@@ -415,6 +413,9 @@ function showError(message) {
   }, 5000);
 }
 
+/**
+ * Hide error message
+ */
 function hideError() {
   const errorElement = document.getElementById("error-message");
   errorElement.style.display = "none";
