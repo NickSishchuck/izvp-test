@@ -1,6 +1,9 @@
 ﻿
+using System.Diagnostics.CodeAnalysis;
+
 namespace TestApi.DTOs.Requests.TestUpdateRequestAggregate
 {
+    [ExcludeFromCodeCoverage]
     public class UpdateQuestionDto
     {
         /// <summary>

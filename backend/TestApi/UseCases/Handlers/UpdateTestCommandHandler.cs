@@ -15,6 +15,7 @@ namespace TestApi.UseCases.Handlers
 
             var test = new TestEntity()
             {
+                Id = dto.Id,
                 Title = dto.Title,
                 Questions = dto.Questions
                 .OrderBy(q => q.Id)
@@ -23,6 +24,7 @@ namespace TestApi.UseCases.Handlers
                     Id = q.Id,
                     Text = q.Text,
                     Type = (QuestionType)q.Type,
+                    Score = q.Score,
                     CorrectTextAnswer = q.Text,
                     Options = q.Options
                     .OrderBy(q => q.Id)

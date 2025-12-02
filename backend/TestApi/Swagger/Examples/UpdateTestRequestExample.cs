@@ -1,15 +1,17 @@
-﻿using Swashbuckle.AspNetCore.Filters;
+﻿using System.Diagnostics.CodeAnalysis;
+using Swashbuckle.AspNetCore.Filters;
 using TestApi.DomainEntities;
 
 namespace TestApi.Swagger.Examples
 {
+    [ExcludeFromCodeCoverage]
     public class UpdateTestRequestExample : IExamplesProvider<TestEntity>
     {
         public TestEntity GetExamples()
         {
             return new TestEntity
             {
-                Id = Guid.Parse("00000000-0000-0000-0000-000000000001"),
+                Id = Guid.Parse("00000000-0000-0000-0000-000000000000"),
                 Title = "Тест з C# для початківців",
                 Questions = new List<Question>
                 {
