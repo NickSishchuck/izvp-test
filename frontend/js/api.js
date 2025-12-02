@@ -31,6 +31,86 @@ async function getTest() {
 }
 
 /**
+ * Check if user has already passed the test
+ *
+ * @param {string} username - User's name
+ * @param {string} testId - Test ID (GUID)
+ * @returns {Promise<boolean>} True if user already passed, false otherwise
+ *
+ * @example
+ * const hasPassed = await API.checkUserPassed("Maria", "00000000-0000-0000-0000-000000000000");
+ */
+async function checkUserPassed(username, testId) {
+  try {
+    const response = await fetch(
+      `${API_URL}/test/check/${encodeURIComponent(username)}/${testId}`,
+    );
+
+    if (response.ok) {
+      // Status 200 means user has NOT passed yet
+      return false;
+    } else if (response.status === 400) {
+      // Status 400 with validation error means user already passed
+      return true;
+    } else {
+      throw new Error(`Unexpected response: ${response.status}`);
+    }
+  } catch (error) {
+    console.error("Error in API.checkUserPassed():", error);
+    throw error;
+  }
+}
+
+/**
+ * Submit test answers to backend for evaluation
+ *
+ * @param {Object} testSubmission - Test submission data
+ * @param {string} testSubmission.testId - Test ID
+ * @param {string} testSubmission.userName - User's name
+ * @param {string} testSubmission.title - Test title
+ * @param {Array} testSubmission.answers - Array of answer objects
+ * @returns {Promise<Object>} Test result from backend
+ *
+ * @example
+ * const result = await API.submitTest({
+ *     testId: "00000000-0000-0000-0000-000000000000",
+ *     userName: "Maria",
+ *     title: "Test Title",
+ *     answers: [
+ *         { id: 1, selectedOptionIds: [1], textAnswer: null },
+ *         { id: 2, selectedOptionIds: [1, 3], textAnswer: null },
+ *         { id: 3, selectedOptionIds: [], textAnswer: "Console.WriteLine" }
+ *     ]
+ * });
+ */
+async function submitTest(testSubmission) {
+  try {
+    const response = await fetch(`${API_URL}/test/submit`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(testSubmission),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(
+        `Failed to submit test: ${response.status} - ${
+          JSON.stringify(errorData)
+        }`,
+      );
+    }
+
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error("Error in API.submitTest():", error);
+    throw error;
+  }
+}
+
+/**
  * Store user's name in session storage
  *
  * @param {string} name - User's name
@@ -86,17 +166,16 @@ function getTestData() {
 
 /**
  * Store test result in session storage
- * This is called by the backend after test submission
+ * This is called after receiving result from backend
  *
  * @param {Object} result - Result object from API
  *
  * @example
  * API.storeTestResult({
- *     name: "Maria",
- *     score: 5,
- *     totalScore: 5,
  *     correctAnswers: 3,
- *     totalQuestions: 3
+ *     totalQuestions: 3,
+ *     score: 5,
+ *     totalScore: 5
  * });
  */
 function storeTestResult(result) {
@@ -149,6 +228,8 @@ async function checkHealth() {
 const API = {
   // API calls
   getTest,
+  checkUserPassed,
+  submitTest,
   checkHealth,
 
   // Storage helpers
@@ -162,59 +243,3 @@ const API = {
 
 // Make available globally
 window.API = API;
-
-// ============================================================================
-// USAGE EXAMPLES FOR REFERENCE
-// ============================================================================
-
-/*
-
-// Example 1: Load test in greeting page
-async function loadTestInfo() {
-    try {
-        const test = await API.getTest();
-        console.log(test.title);
-        API.storeTestData(test);
-    } catch (error) {
-        showError('Failed to load test');
-    }
-}
-
-// Example 2: Store user name and navigate
-function handleStartTest() {
-    const name = document.getElementById('user-name').value.trim();
-    if (!name) {
-        showError('Please enter your name');
-        return;
-    }
-    API.storeUserName(name);
-    window.location.href = 'test.html';
-}
-
-// Example 3: Load results in results page
-function loadResults() {
-    const result = API.getTestResult();
-    if (!result) {
-        window.location.href = 'index.html';
-        return;
-    }
-    displayScore(result.score, result.totalScore);
-}
-
-// Example 4: Retry test
-function handleRetry() {
-    API.clearAllData();
-    window.location.href = 'index.html';
-}
-
-// Example 5: Debug API connection
-async function testConnection() {
-    try {
-        const health = await API.checkHealth();
-        console.log('API is healthy:', health);
-    } catch (error) {
-        console.error('API is not responding');
-    }
-}
-
-*/

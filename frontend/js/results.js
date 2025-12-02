@@ -1,80 +1,80 @@
 /**
- * INTEGRATION CONTRACT
- *
- * REQUIRED INPUTS:
- * - API.getTestResult() returns: { name, score, totalScore, correctAnswers, totalQuestions }
- * - API.getUserName() returns: string
- *
- * REQUIRED OUTPUTS:
- * - Must update DOM: #results-greeting (personalized message)
- * - Must update DOM: #score-value (format: "15/30")
- * - Must update DOM: #stats-details (correct answers, percentage)
- * - Must call: API.clearAllData() before retry
- * - Must navigate to: 'index.html' on retry
- * - If no result data exists: redirect to 'index.html'
+ * Load result data and display
  */
-
-// TODO: Load result data, display greeting, score, and stats
 function loadResults() {
   try {
-    const result = API.getTestResult(); 
+    const result = API.getTestResult();
+    const userName = API.getUserName();
+
     if (!result) {
-      showError("Результат не знайдено");
+      console.error("No result found");
+      window.location.href = "index.html";
       return;
     }
 
-    const { name, score, totalQuestions, correctAnswers } = result;
-    const percentage = Math.round((score / totalQuestions) * 100);
+    const { correctAnswers, totalQuestions, score, totalScore } = result;
+    const percentage = Math.round((correctAnswers / totalQuestions) * 100);
 
-    displayGreeting(name, percentage);
-    displayScore(score, totalQuestions);
-    displayStats({ correctAnswers, percentage });
-
+    displayGreeting(userName || "User", percentage);
+    displayScore(score, totalScore);
+    displayStats({ correctAnswers, totalQuestions, percentage });
   } catch (error) {
     console.error("Error loading results:", error);
-    showError("Помилка завантаження результатів");
+    showError("Error loading results");
   }
 }
 
-// TODO: Display personalized greeting based on score percentage
+/**
+ * Display personalized greeting based on score percentage
+ */
 function displayGreeting(name, percentage) {
   const greetingEl = document.getElementById("results-greeting");
   let greeting;
 
   if (percentage >= 90) {
-    greeting = `Вітаємо, ${name}! Ви блискуче пройшли тест!`;
+    greeting = `Congratulations, ${name}! You passed the test brilliantly!`;
   } else if (percentage >= 70) {
-    greeting = `Добра робота, ${name}! Ви добре справились!`;
+    greeting = `Great job, ${name}! You did well!`;
+  } else if (percentage >= 50) {
+    greeting = `Good effort, ${name}! Keep practicing!`;
   } else {
-    greeting = `Дякуємо, ${name}! Ви завершили тест.`;
+    greeting = `Thank you for participating, ${name}!`;
   }
 
   greetingEl.textContent = greeting;
 }
 
-// TODO: Display score in format "score/totalScore"
+/**
+ * Display score in format "score / totalScore"
+ */
 function displayScore(score, totalScore) {
   const scoreEl = document.getElementById("score-value");
   scoreEl.textContent = `${score} / ${totalScore}`;
 }
 
-// TODO: Display statistics (correct answers count and percentage)
-function displayStats({ correctAnswers, percentage }) {
+/**
+ * Display statistics (correct answers count and percentage)
+ */
+function displayStats({ correctAnswers, totalQuestions, percentage }) {
   const statsEl = document.getElementById("stats-details");
   statsEl.innerHTML = `
-    <p>Правильних відповідей: ${correctAnswers}</p>
-    <p>Відсоток правильних: ${percentage}%</p>
+    <p>Correct answers: ${correctAnswers} out of ${totalQuestions}</p>
+    <p>Accuracy: ${percentage}%</p>
   `;
 }
 
-// TODO: Display error in #error-message element
+/**
+ * Display error message
+ */
 function showError(message) {
   const errorEl = document.getElementById("error-message");
   errorEl.style.display = "block";
   errorEl.textContent = message;
 }
 
-// TODO: Initialize page - load results and setup event listeners
+/**
+ * Initialize page
+ */
 function init() {
   loadResults();
 }
