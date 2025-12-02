@@ -291,7 +291,7 @@ function renderOptionsSection(question) {
     }" placeholder="Enter the correct answer" />
             </div>
             <div class="text-answer-info">
-                ℹ️ For text questions, enter the exact answer that will be accepted (case-insensitive).
+              Case sensitive!
             </div>
         `;
   } else {

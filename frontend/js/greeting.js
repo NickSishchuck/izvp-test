@@ -17,7 +17,7 @@ async function loadTestInfo() {
     API.storeTestData(test);
   } catch (error) {
     console.error("Error loading test:", error);
-    showError("Failed to load test. Please try again later.");
+    showError("Помилка при завантаженні тесту. Будь ласка спробуйте ще.");
   } finally {
     loading.style.display = "none";
   }
@@ -32,26 +32,26 @@ async function handleStartTest() {
 
   // Validate name
   if (!name) {
-    showError("Please enter your name");
+    showError("Будь ласка введіть ім'я");
     nameInput.focus();
     return;
   }
 
   if (name.length < 2) {
-    showError("Name must be at least 2 characters long");
+    showError("Ім'я має бути довше ніж 2 літери");
     nameInput.focus();
     return;
   }
 
   if (name.length > 100) {
-    showError("Name must be less than 100 characters");
+    showError("Ім'я повинно бути менше ніж 100 літер");
     nameInput.focus();
     return;
   }
 
   // Check if test data is loaded
   if (!currentTestData) {
-    showError("Test data not loaded. Please refresh the page.");
+    showError("Дані тесту не завантажені. Спробуйте оновити сторінку.");
     return;
   }
 
@@ -67,7 +67,7 @@ async function handleStartTest() {
     const hasPassed = await API.checkUserPassed(name, currentTestData.id);
 
     if (hasPassed) {
-      showError("You have already completed this test.");
+      showError("Ви вже складали цей тест.");
       loading.style.display = "none";
       startButton.disabled = false;
       return;
@@ -78,7 +78,9 @@ async function handleStartTest() {
     window.location.href = "test.html";
   } catch (error) {
     console.error("Error checking user status:", error);
-    showError("Failed to verify user status. Please try again.");
+    showError(
+      "Помилка при верифікації статусу користувача. Будь ласка спробуйте ще.",
+    );
     loading.style.display = "none";
     startButton.disabled = false;
   }

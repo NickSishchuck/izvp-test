@@ -163,7 +163,7 @@ function renderTextInput(question, container) {
   const textInput = document.createElement("textarea");
   textInput.id = `text-answer-${question.id}`;
   textInput.className = "text-answer-input";
-  textInput.placeholder = "Enter your answer...";
+  textInput.placeholder = "Ваша відповідь...";
   textInput.rows = 4;
 
   container.appendChild(textInput);
@@ -178,7 +178,7 @@ function updateProgress(current, total) {
 
   const percentage = (current / total) * 100;
   progressFill.style.width = `${percentage}%`;
-  progressText.textContent = `Question ${current} of ${total}`;
+  progressText.textContent = `Питання ${current} з ${total}`;
 }
 
 /**
@@ -275,7 +275,7 @@ function validateCurrentAnswer() {
   const answer = TestState.userAnswers[question.id];
 
   if (answer === null || (Array.isArray(answer) && answer.length === 0)) {
-    showError("Please answer this question");
+    showError("Це питання вимагає відповіді");
     return false;
   }
 
@@ -354,7 +354,7 @@ async function handleSubmit() {
     window.location.href = "results.html";
   } catch (error) {
     console.error("Error submitting test:", error);
-    showError("Failed to submit test. Please try again.");
+    showError("Помилка при відправці тесту. Будь ласка спробуйте ще раз.");
     loading.style.display = "none";
     submitButton.disabled = false;
   }

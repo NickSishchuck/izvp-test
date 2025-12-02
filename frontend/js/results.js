@@ -20,7 +20,7 @@ function loadResults() {
     displayStats({ correctAnswers, totalQuestions, percentage });
   } catch (error) {
     console.error("Error loading results:", error);
-    showError("Error loading results");
+    showError("Помилка при завантаженні результатів");
   }
 }
 
@@ -32,13 +32,13 @@ function displayGreeting(name, percentage) {
   let greeting;
 
   if (percentage >= 90) {
-    greeting = `Congratulations, ${name}! You passed the test brilliantly!`;
+    greeting = `Вітаємо, ${name}! Ви блискуче склали тест!`;
   } else if (percentage >= 70) {
-    greeting = `Great job, ${name}! You did well!`;
+    greeting = `Чудова робота, ${name}! Ви добре впорались!`;
   } else if (percentage >= 50) {
-    greeting = `Good effort, ${name}! Keep practicing!`;
+    greeting = `Непогано, ${name}! Ви склали тест!`;
   } else {
-    greeting = `Thank you for participating, ${name}!`;
+    greeting = `Дякуємо за участь, ${name}!`;
   }
 
   greetingEl.textContent = greeting;
@@ -58,8 +58,8 @@ function displayScore(score, totalScore) {
 function displayStats({ correctAnswers, totalQuestions, percentage }) {
   const statsEl = document.getElementById("stats-details");
   statsEl.innerHTML = `
-    <p>Correct answers: ${correctAnswers} out of ${totalQuestions}</p>
-    <p>Accuracy: ${percentage}%</p>
+    <p>Правильних відповідей: ${correctAnswers} з ${totalQuestions}</p>
+    <p>Результат: ${percentage}%</p>
   `;
 }
 
