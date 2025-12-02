@@ -8,5 +8,5 @@ namespace TestApi.DTOs.Responses
     /// <param name="Status">The health status as a string.</param>
     /// <param name="Timestamp">The date and time, in UTC, when the health check was performed.</param>
     [ExcludeFromCodeCoverage]
-    public sealed record HealthStatusResponse(string Status, DateTime Timestamp);
+    public record HealthStatusResponse(string Status, DateTime Timestamp);
 }

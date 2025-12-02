@@ -3,9 +3,9 @@
 namespace TestApi.DTOs.Requests
 {
     [ExcludeFromCodeCoverage]
-    public class AdminLoginRequest
+    public record AdminLoginRequest
     {
-        public string Username { get; set; } = string.Empty;
-        public string Password { get; set; } = string.Empty;
+        public required string Username { get; set; }
+        public required string Password { get; set; }
     }
 }

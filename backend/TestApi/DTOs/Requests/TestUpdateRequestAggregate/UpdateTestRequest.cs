@@ -3,11 +3,10 @@
 namespace TestApi.DTOs.Requests.TestUpdateRequestAggregate
 {
     [ExcludeFromCodeCoverage]
-    public class UpdateTestRequest
+    public record UpdateTestRequest
     {
         public Guid Id { get; set; }
-        public string Title { get; set; }
-
-        public List<UpdateQuestionDto> Questions { get; set; }
+        public required string Title { get; set; }
+        public List<UpdateQuestionDto> Questions { get; set; } = new();
     }
 }

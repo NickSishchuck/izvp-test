@@ -3,7 +3,7 @@
 namespace TestApi.DTOs.Requests.TestUpdateRequestAggregate
 {
     [ExcludeFromCodeCoverage]
-    public class UpdateAnswerOptionDto
+    public record UpdateAnswerOptionDto
     {
         /// <summary>
         /// Unique identifier for the entity.

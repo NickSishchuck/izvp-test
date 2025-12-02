@@ -33,11 +33,13 @@ namespace TestApi.Implementations
             Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
         };
 
-        public T FromJson<T>(string json)
+        /// <inheritdoc />
+        public T? FromJson<T>(string json)
         {
             return System.Text.Json.JsonSerializer.Deserialize<T>(json, _options);
         }
 
+        /// <inheritdoc />
         public string ToJson<T>(T obj)
         {
             return System.Text.Json.JsonSerializer.Serialize(obj, _options);

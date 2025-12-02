@@ -6,7 +6,7 @@ namespace TestApi.DTOs.Responses.TestResponseAggregate
     /// DTO representing a test response.
     /// </summary>
     [ExcludeFromCodeCoverage]
-    public class TestResponse
+    public record TestResponse
     {
         /// <summary>
         /// Unique id for test

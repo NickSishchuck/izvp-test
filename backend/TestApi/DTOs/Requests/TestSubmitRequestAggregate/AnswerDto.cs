@@ -6,7 +6,7 @@ namespace TestApi.DTOs.Requests.TestSubmitRequestAggregate
     /// Represents a single user answer submitted for a specific test question.
     /// </summary>
     [ExcludeFromCodeCoverage]
-    public class AnswerDto
+    public record AnswerDto
     {
         /// <summary>
         /// The identifier of the question this answer belongs to.
@@ -17,7 +17,7 @@ namespace TestApi.DTOs.Requests.TestSubmitRequestAggregate
         /// The collection of selected option identifiers
         /// for choice-based questions (single- or multiple-choice).
         /// </summary>
-        public List<int> SelectedOptionIds { get; set; }
+        public List<int> SelectedOptionIds { get; set; } = new();
 
         /// <summary>
         /// The free-form text answer for text-based questions.

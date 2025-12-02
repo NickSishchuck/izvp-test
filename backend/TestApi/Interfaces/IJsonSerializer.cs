@@ -19,6 +19,6 @@
         /// <typeparam name="T"></typeparam>
         /// <param name="json"></param>
         /// <returns></returns>
-        public T FromJson<T>(string json);
+        public T? FromJson<T>(string json);
     }
 }

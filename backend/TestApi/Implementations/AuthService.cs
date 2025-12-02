@@ -17,6 +17,7 @@ namespace TestApi.Implementations
             _adminPassword = configuration["AdminSettings:Password"]
                 ?? throw new ArgumentNullException("AdminSettings:Password must be configured.");
         }
+
         public ValidationResult Validate(string username, string password)
         {
             var result = new ValidationResult();

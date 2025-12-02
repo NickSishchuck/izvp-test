@@ -19,6 +19,8 @@ namespace TestApi.Tests.E2E
         {
             var factory = new WebApplicationFactory<Program>();
             _client = factory.CreateClient();
+
+            _client.DefaultRequestHeaders.Add("X-Admin-Token", "generated-admin-jwt-token");
         }
 
         [Fact]
