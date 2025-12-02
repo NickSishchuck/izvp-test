@@ -29,6 +29,28 @@ namespace TestApi.Controllers
             return Ok(result.Value);
         }
 
+        /// <summary>
+        /// Handles HTTP GET requests to check if user passed the test 
+        /// </summary>
+        /// <param name="username">The username</param>
+        /// <param name="testId">The unique test id</param>
+        /// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+        /// <returns></returns>
+        [HttpGet("check/{username}/{testId}")]
+        public async Task<IActionResult> CheckUserPassedAsync([FromRoute] string username, [FromRoute] Guid testId, CancellationToken cancellationToken)
+        {
+            var query = new CheckUserPassedQuery(username, testId);
+            var result = await mediator.Send(query, cancellationToken);
+
+            if (result.IsFailure)
+            {
+                return ValidationProblem(result.Error.ToModelState());
+            }
+
+            return Ok();
+        }
+
+
 
         /// <summary>
         /// Handles HTTP POST to submit user`s test.

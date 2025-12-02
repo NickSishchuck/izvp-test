@@ -1,16 +1,15 @@
+using System.Diagnostics.CodeAnalysis;
 using FluentValidation;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi;
+using Microsoft.OpenApi.Models;
 using Serilog;
 using Swashbuckle.AspNetCore.Filters;
-using System.Diagnostics.CodeAnalysis;
-using TestApi.DTOs.Requests;
+using TestApi.Filters;
 using TestApi.Implementations;
 using TestApi.Implementations.Repositories;
 using TestApi.Interfaces;
 using TestApi.Middleware;
 using TestApi.Swagger.Examples;
-using TestApi.UseCases.Commands;
 using TestApi.Validators;
 
 namespace TestApi
@@ -20,7 +19,7 @@ namespace TestApi
     {
         public static void Main(string[] args)
         {
-            var сonfig = new ConfigurationBuilder()
+            var config = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}.json", optional: true, reloadOnChange: true)
@@ -29,7 +28,7 @@ namespace TestApi
 
             // Configure Serilog
             Log.Logger = new LoggerConfiguration()
-                .ReadFrom.Configuration(сonfig)
+                .ReadFrom.Configuration(config)
                 .CreateLogger();
 
             try
@@ -38,6 +37,8 @@ namespace TestApi
 
                 // Create WebApplication builder
                 var builder = WebApplication.CreateBuilder(args);
+
+                builder.Services.AddScoped<AdminAuthorizationFilter>();
 
                 builder.Host.UseSerilog();
 
@@ -80,7 +81,30 @@ namespace TestApi
                         Version = "v1",
                         Description = "API for tests like Google Forms"
                     });
+
+                    c.AddSecurityDefinition("AdminToken", new OpenApiSecurityScheme
+                    {
+                        Type = SecuritySchemeType.ApiKey,
+                        In = ParameterLocation.Header,
+                        Name = "X-Admin-Token",
+                    });
+
+                    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                    {
+                        {
+                            new OpenApiSecurityScheme
+                            {
+                                Reference = new OpenApiReference
+                                {
+                                    Type = ReferenceType.SecurityScheme,
+                                    Id = "AdminToken"
+                                }
+                            },
+                            Array.Empty<string>()
+                        }
+                    });
                 });
+
 
                 // CORS
                 builder.Services.AddCors(options =>

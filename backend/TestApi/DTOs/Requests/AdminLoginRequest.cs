@@ -1,5 +1,8 @@
-﻿namespace TestApi.DTOs.Requests
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace TestApi.DTOs.Requests
 {
+    [ExcludeFromCodeCoverage]
     public class AdminLoginRequest
     {
         public string Username { get; set; } = string.Empty;

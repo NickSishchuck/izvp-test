@@ -21,7 +21,6 @@ namespace TestApi.Implementations
         {
             var result = new ValidationResult();
 
-            // Уніфікована перевірка для запобігання User Enumeration
             if (username != _adminUsername || password != _adminPassword)
             {
                 result.Errors.Add(new ValidationFailure(

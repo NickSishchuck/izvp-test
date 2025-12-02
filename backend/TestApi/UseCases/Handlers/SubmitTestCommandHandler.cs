@@ -11,7 +11,7 @@ using TestApi.UseCases.Commands;
 namespace TestApi.UseCases.Handlers
 {
     /// <summary>
-    /// Handles test submission commands: validates input, evaluates the test, and stores the result.
+    /// Handles the <see cref="SubmitTestCommand"/> validates input, evaluates the test, and stores the result.
     /// </summary>
     public class SubmitTestCommandHandler(
         IValidator<TestSubmitRequest> validator,
