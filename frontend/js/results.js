@@ -76,9 +76,7 @@ function showError(message) {
 
 // TODO: Initialize page - load results and setup event listeners
 function init() {
-  function init() {
   loadResults();
-}
 }
 
 document.addEventListener("DOMContentLoaded", init);
