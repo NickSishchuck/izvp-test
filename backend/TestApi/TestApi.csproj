@@ -7,11 +7,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Content Remove="Test_Json\test.json" />
+		<Content Remove="Test_Json\test.json" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ApplicationDefinition Include="Test_Json\test.json" />
+		<ApplicationDefinition Include="Test_Json\test.json" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -21,14 +21,14 @@
 		<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.0" />
 		<PackageReference Include="MediatR" Version="13.1.0" />
 		<PackageReference Include="Serilog" Version="4.3.0" />
-		<PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
+		<PackageReference Include="Serilog.AspNetCore" Version="10.0.0" />
 		<PackageReference Include="Serilog.Sinks.Console" Version="6.1.1" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-		<PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="10.0.1" />
+		<PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="7.0.15" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="TestJson\UserTestsResults\" />
+		<Folder Include="TestJson\UserTestsResults\" />
 	</ItemGroup>
 
 </Project>
