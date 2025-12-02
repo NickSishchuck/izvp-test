@@ -12,7 +12,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:5000
     volumes:
-      - ./backend/TestApi/Test_Json:/app/Test_Json
+      - ./backend/TestApi/TestJson:/app/TestJson
     networks:
       - app-network
     restart: unless-stopped
