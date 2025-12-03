@@ -20,6 +20,30 @@ const QuestionTypeNames = {
 };
 
 /**
+ * Generate next test ID by incrementing the last segment
+ */
+function generateNextTestId(currentId) {
+  if (!currentId || currentId === "00000000-0000-0000-0000-000000000000") {
+    return "00000000-0000-0000-0000-000000000001";
+  }
+
+  // Split GUID into parts
+  const parts = currentId.split("-");
+
+  // Get last part and increment it as a hex number
+  const lastPart = parts[parts.length - 1];
+  const incremented = (parseInt(lastPart, 16) + 1).toString(16).padStart(
+    12,
+    "0",
+  );
+
+  // Replace last part with incremented value
+  parts[parts.length - 1] = incremented;
+
+  return parts.join("-");
+}
+
+/**
  * Initialize the admin panel
  */
 function init() {
@@ -590,6 +614,10 @@ async function handleSaveTest() {
     // Collect and validate data
     const testData = collectTestData();
 
+    // Generate new incremented test ID
+    const newTestId = generateNextTestId(testData.id);
+    testData.id = newTestId;
+
     showLoading(true);
 
     // Send to backend
@@ -610,7 +638,7 @@ async function handleSaveTest() {
     const result = await response.json();
     AdminState.testData = result;
 
-    showSaveSuccess("Test saved successfully!");
+    showSaveSuccess(`Test saved successfully with ID: ${newTestId}`);
 
     // Reload test to sync with backend
     setTimeout(() => {
